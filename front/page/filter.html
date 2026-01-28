@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche & Filtres Avancés</title>
+    <link rel="stylesheet" href="/static/filter.css"> 
+    <link rel="stylesheet" href="/static/index.css"> 
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="/" class="logo">
+                    <img src="/Images/473.jpeg" alt="Logo" class="logo1"> 
+                </a>
+                
+                
+                <ul>
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/aboutus">Plus sur nous</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="filter-panel">
+                <h2>Filtres Rapides</h2>
+                <div class="filter-buttons">
+                    <a class="filter-btn" href="?filter=verifAlbumDate">création après 2010</a>
+                    <a class="filter-btn" href="?filter=verifDate">Premier album en 2000s</a>
+                    <a class="filter-btn" href="?filter=verifMemberNumber">Groupes &le; 2 membres</a>
+                    <a class="filter-btn" href="?filter=verifLocation"> Concert aux USA</a>
+                    <a class="filter-btn" href="?filter=verifNonAlbumDate">création avant 2010</a>
+                    <a class="filter-btn" href="?filter=verifNonDate">Premier album avant 2000s</a>
+                    <a class="filter-btn" href="?filter=verifNonMemberNumber">Groupes superieur à 2 membres</a>
+                    <a class="filter-btn" href="?filter=verifNonLocation"> Concert en dehors des USA</a>
+                    <a class="filter-btn reset-btn" href="?filter=réinitialiser">réinitialiser</a>
+                </div>
+            </section>
+            
+            <h2 style="margin-top: 30px;">Résultats des Filtres</h2>
+
+            <div class="cards-container">
+                {{ range . }}
+                <div class="card">
+                    <img src="{{ .Image }}" alt="{{ .Name }}">
+                    <div class="card-content">
+                        <h2>{{ .Name }}</h2>
+                        <p><strong>Premier album :</strong> {{ .FirstAlbum }}</p>
+                        <p><strong>Membres :</strong></p>
+                        <ul>
+                            {{ range .Members }}
+                            <li>{{ . }}</li>
+                            {{ end }}
+                        </ul>
+                        <form method="GET" action="/artist">
+                            <input type="hidden" name="id" value="{{ .ID }}">
+                            <button class="btn secondary" type="submit">Voir l'artiste</button>
+                        </form>
+                    </div>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>2025 Music Tracker</p>
+        </div>
+    </footer>
+</body>
+</html>

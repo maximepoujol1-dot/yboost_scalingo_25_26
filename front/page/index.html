@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artistes Musicaux</title>
+    <link rel="stylesheet" href="/static/index.css">
+    </head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <a href="/" class="logo">
+                    <img src="/Images/473.jpeg" alt="Logo" class="logo1">
+                </a>
+                
+                <form class="search-form" onsubmit="event.preventDefault(); filterArtists();">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        oninput="filterArtists()" 
+                        placeholder="Rechercher un artiste, membre, album, année..." 
+                        class="search-input"
+                    >
+                    <button type="button" class="search-button">
+                        <span class="material-icons">🔍</span>
+                    </button>
+                </form>
+                
+                <ul>
+                    <li><a href="/filtre">Recherche approfondi</a></li>
+                    <li><a href="/aboutus">Plus sur nous</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="cards-container" id="artistContainer">
+            {{ range . }}
+            <div class="card"
+                 data-name="{{ .Name }}"
+                 data-album="{{ .FirstAlbum }}"
+                 data-year="{{ .CreationDate }}"
+                 data-members="{{ range .Members }}{{ . }} {{ end }}">
+                
+                <img src="{{ .Image }}" alt="{{ .Name }}">
+                <div class="card-content">
+                    <h2>{{ .Name }}</h2>
+                    <p><strong>Année de création :</strong> {{ .CreationDate }}</p>
+                    <p><strong>Premier album :</strong> {{ .FirstAlbum }}</p>
+                    <p><strong>Membres :</strong></p>
+                    <ul>
+                        {{ range .Members }}
+                        <li>{{ . }}</li>
+                        {{ end }}
+                    </ul>
+                    <form method="GET" action="/artist">
+                        <input type="hidden" name="id" value="{{ .ID }}">
+                        <button class="btn secondary" type="submit">Voir l'artiste</button>
+                    </form>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </main>
+
+    <script>
+        function filterArtists() {
+            // 1. Récupérer le terme de recherche et le normaliser (en minuscules)
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            // 2. Récupérer le conteneur et toutes les cartes
+            const container = document.getElementById('artistContainer');
+            if (!container) return; 
+            
+            // S'assurer que 'card' est la classe CSS correcte utilisée pour chaque artiste
+            const cards = container.getElementsByClassName('card'); 
+            
+            // 3. Parcourir les cartes et filtrer
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
+                
+                // Récupérer les données de recherche des attributs data-*
+                // On met tout en minuscules pour comparer
+                const name = card.dataset.name.toLowerCase();
+                const members = card.dataset.members.toLowerCase();
+                const album = card.dataset.album.toLowerCase();
+                const year = card.dataset.year.toLowerCase();
+
+                let found = false;
+
+                // 4. Vérification de la correspondance
+                // Si la requête est vide, on affiche tout (found = true)
+                if (query === '' || 
+                    name.includes(query) ||
+                    album.includes(query) ||
+                    year.includes(query) ||
+                    members.includes(query)
+                ) {
+                    found = true;
+                }
+
+                // 5. Afficher ou masquer la carte
+                if (found) {
+                    card.style.display = 'flex'; // Utilise flex ou block, selon ton CSS d'origine
+                } else {
+                    card.style.display = 'none'; // Masquer
+                }
+            }
+        }
+    </script>
+</body>
+</html>

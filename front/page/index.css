@@ -1,0 +1,245 @@
+/* ======================================= */
+/* 1. RÉINITIALISATION ET FOND DE PAGE */
+/* ======================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7; /* Fond gris très clair pour le corps */
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ======================================= */
+/* 2. HEADER ET NAVIGATION */
+/* ======================================= */
+header {
+    background-color: #ffffff; /* Fond blanc pour le header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70px; /* Hauteur minimale de la barre de navigation */
+}
+
+/* Logo */
+.logo1 {
+    height: 50px; /* Taille du logo */
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Liens de navigation */
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin-left: 20px; /* Espace après la barre de recherche */
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #555;
+    padding: 10px 15px;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.navbar ul li a:hover {
+    color: #3f51b5; /* Bleu accent au survol */
+}
+
+/* ======================================= */
+/* 3. BARRE DE RECHERCHE (Améliorée) */
+/* ======================================= */
+.search-form {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Prend l'espace disponible */
+    max-width: 450px; 
+    margin: 0 30px; 
+    border: 1px solid #ddd;
+    border-radius: 25px; /* Coins très arrondis */
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); 
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.search-form:focus-within {
+    border-color: #3f51b5; 
+    box-shadow: 0 4px 8px rgba(63, 81, 181, 0.2);
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 10px 15px; 
+    border: none; 
+    outline: none; 
+    font-size: 15px;
+    color: #333;
+}
+
+.search-input::placeholder {
+    color: #aaa;
+}
+
+.search-button {
+    background-color: #3f51b5; 
+    color: white; 
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px; 
+}
+
+.search-button:hover {
+    background-color: #303f9f; 
+}
+
+/* ======================================= */
+/* 4. MAIN ET GRILLE D'ARTISTES */
+/* ======================================= */
+main {
+    padding: 40px 20px;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Espacement entre les cartes */
+    justify-content: center; /* Centrer les cartes dans le conteneur */
+}
+
+/* ======================================= */
+/* 5. CARTE D'ARTISTE INDIVIDUELLE */
+/* ======================================= */
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px; /* Taille maximale pour chaque carte */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Assurer que le JS utilise 'flex' si la carte est affichée */
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Léger soulèvement au survol */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Assure que l'image couvre bien la zone */
+}
+
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #3f51b5; /* Nom de l'artiste en couleur accent */
+    font-size: 1.5em;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.card-content p {
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+.card-content strong {
+    font-weight: 600;
+    color: #333;
+}
+
+.card-content ul {
+    list-style: disc inside;
+    padding-left: 0;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.card-content ul li {
+    font-size: 0.9em;
+    padding-left: 5px;
+}
+
+/* Bouton "Voir l'artiste" */
+.card-content form {
+    margin-top: auto; /* Pousse le bouton vers le bas de la carte */
+    padding-top: 10px;
+}
+
+.btn.secondary {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #3f51b5;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+.btn.secondary:hover {
+    background-color: #303f9f;
+}
+
+/* ======================================= */
+/* 6. RESPONSIVE DESIGN (Optionnel) */
+/* ======================================= */
+@media (max-width: 768px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .search-form {
+        order: 3; /* Le met sous le logo */
+        width: 90%;
+        max-width: none;
+        margin: 10px 0;
+    }
+    .navbar ul {
+        margin: 10px 0 0 0;
+        order: 4;
+        width: 100%;
+        justify-content: center;
+    }
+    .card {
+        max-width: 90%;
+    }
+}

@@ -1,0 +1,147 @@
+/* ======================================= */
+/* artiste.css - STYLES DE LA PAGE DÉTAIL D'UN ARTISTE */
+/* ======================================= */
+
+/* 1. Base et Layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5; 
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* 2. Style de la Fiche Artiste (artist-detail) */
+.artist-detail {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* En-tête (Image et Informations de base) */
+.header-info {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    align-items: flex-start;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.artist-image {
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0; 
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-info h1 {
+    font-size: 2.5em;
+    color: #3f51b5; 
+    margin-bottom: 10px;
+}
+
+.main-info p {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+.main-info strong {
+    font-weight: 600;
+    color: #555;
+}
+
+/* Liste des Membres (Jetons stylisés) */
+.main-info h2 {
+    font-size: 1.3em;
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.members-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.members-list li {
+    background-color: #f0f4ff; 
+    color: #3f51b5;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+
+/* 3. Sections Concerts et Locations (Grille) */
+.sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 30px;
+    padding-top: 30px;
+}
+
+.section {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.section h3 {
+    font-size: 1.5em;
+    color: #3f51b5;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.concert-list {
+    list-style: none;
+    padding: 0;
+}
+
+.concert-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #eee;
+    color: #555;
+}
+
+.concert-list li:last-child {
+    border-bottom: none;
+}
+
+/* 4. Responsive */
+@media (max-width: 768px) {
+    .header-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .sections-grid {
+        grid-template-columns: 1fr; 
+    }
+    .artist-image {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+    }
+    .members-list {
+        justify-content: center;
+    }
+}

@@ -1,1 +1,1 @@
-web : viking-tracker
+web: viking-tracker

@@ -32,39 +32,12 @@
                     
                     <div class="main-info">
                         <h1>{{ .Name }}</h1>
-                        <p><strong>Année de création :</strong> {{ .CreationDate }}</p>
-                        <p><strong>Premier album :</strong> {{ .FirstAlbum }}</p>
-
-                        <h2>Membres du groupe</h2>
-                        <ul class="members-list">
-                            {{ range .Members }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
+                        <p><strong>Année de naissance : </strong> {{ .Birthday }}</p>
+                        <p><strong>Année de mort : </strong> {{ .Deadyears }}</p>
+                        <p><strong>Periode : </strong> {{ .Time }}</p>
+                        <p><strong>Pays de naissance : </strong> {{ .BirthLocation }}</p>
                     </div>
                 </div>
-
-                <div class="sections-grid">
-                    
-                    <div class="section">
-                        <h3>Dates de Concert</h3>
-                        <ul class="concert-list">
-                            {{ range .DateConcert }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                    </div>
-
-                    <div class="section">
-                        <h3>Lieux de Concert</h3>
-                        <ul class="concert-list">
-                            {{ range .LocationConcert }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                    </div>
-                </div>
-
             </div>
         </div>
     </main>

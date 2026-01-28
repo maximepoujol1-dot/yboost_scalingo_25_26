@@ -5,37 +5,34 @@ package api
 func Verifswitch(verifi map[string]bool, motsVerif string) {
 
     switch motsVerif {
-    case "verifAlbumDate":
-        if verifi["verifAlbumDate"] == true {
-            verifi["verifAlbumDate"] = false
-        } else {
-            verifi["verifAlbumDate"] = true
-        }
 	
 
-    case "verifDate":
-        if verifi["verifDate"] == true {
-            verifi["verifDate"] = false
+    case "verifDanemark":
+        if verifi["verifDanemark"] == true {
+			verifi["verifDanemark"] = false
         } else {
-            verifi["verifDate"] = true
+            verifi["verifDanemark"] = true
+			verifi["verifSuède"] = false
+			verifi["verifNorvège"] = false
         }
 	
-
-    case "verifMemberNumber":
-        if verifi["verifMemberNumber"] == true {
-            verifi["verifMemberNumber"] = false
+    case "verifSuède":
+        if verifi["verifSuède"] == true {
+            verifi["verifSuède"] = false
         } else {
-            verifi["verifMemberNumber"] = true
+            verifi["verifSuède"] = true
+			verifi["verifDanemark"] = false
+			verifi["verifNorvège"] = false
         }
 
-	case "verifLocation":
-        if verifi["verifLocation"] == true {
-            verifi["verifLocation"] = false
+	case "verifNorvège":
+        if verifi["verifNorvège"] == true {
+            verifi["verifNorvège"] = false
         } else {
-            verifi["verifLocation"] = true
+            verifi["verifNorvège"] = true
+			verifi["verifDanemark"] = false
+			verifi["verifSuède"] = false
         }
-
-
 
 	case "réinitialiser":
         if verifi["réinitialiser"] == true {
@@ -44,37 +41,46 @@ func Verifswitch(verifi map[string]bool, motsVerif string) {
             verifi["réinitialiser"] = true
         }
 	
-
-
-
-    case "verifNonAlbumDate":
-        if verifi["verifNonAlbumDate"] == true {
-            verifi["verifNonAlbumDate"] = false
+    case "verifFin":
+        if verifi["verifFin"] == true {
+            verifi["verifFin"] = false
         } else {
-            verifi["verifNonAlbumDate"] = true
+            verifi["verifFin"] = true
+			verifi["verifApoge"] = false
+			verifi["verifExpansion"] = false
+			verifi["verifDébut"] = false
         }
 	
 
-    case "verifNonDate":
-        if verifi["verifNonDate"] == true {
-            verifi["verifNonDate"] = false
+    case "verifApoge":
+        if verifi["verifApoge"] == true {
+            verifi["verifApoge"] = false
         } else {
-            verifi["verifNonDate"] = true
+            verifi["verifApoge"] = true
+			verifi["verifFin"] = false
+			verifi["verifExpansion"] = false
+			verifi["verifDébut"] = false
         }
 	
 
-    case "verifNonMemberNumber":
-        if verifi["verifNonMemberNumber"] == true {
-            verifi["verifNonMemberNumber"] = false
+    case "verifExpansion":
+        if verifi["verifExpansion"] == true {
+            verifi["verifExpansion"] = false
         } else {
-            verifi["verifNonMemberNumber"] = true
+            verifi["verifExpansion"] = true
+			verifi["verifFin"] = false
+			verifi["verifApoge"] = false
+			verifi["verifDébut"] = false
         }
 
-	case "verifNonLocation":
-        if verifi["verifNonLocation"] == true {
-            verifi["verifNonLocation"] = false
+	case "verifDébut":
+        if verifi["verifDébut"] == true {
+           verifi["verifDébut"] = false
         } else {
-            verifi["verifNonLocation"] = true
+            verifi["verifDébut"] = true
+			verifi["verifFin"] = false
+			verifi["verifApoge"] = false
+			verifi["verifExpansion"] = false
         }
     }
 }

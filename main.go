@@ -6,7 +6,6 @@ import (
 	api "viking-tracker/Api"
 	"html/template"
 	"net/http"
-	"strings"
 )
 
 
@@ -18,7 +17,7 @@ type Person struct {
 	BirthLocation   string `json:"birthLocation"`
 	Time 			string `json:"time"`
 	Birthday        int   `json:"birthday"`
-	Deadyears       int   `json:"locations"`
+	Deadyears       int   `json:"deadyears"`
 }
 
 var id string
@@ -30,6 +29,11 @@ var verif = map[string]bool{
 		"verifNorvège":    false,
         "verifBirthday":         false,
         "verifDeadyears": false,
+		"verifDébut": false,
+		"verifExpansion": false,
+		"verifApoge": false,
+		"verifFin": false,
+
 
 		"réinitialiser":     false,
     }
@@ -85,8 +89,6 @@ func homeHandler2(w http.ResponseWriter, r *http.Request) {
 	body, err := api.ChooseArtistePrecise(id)
 	var user Person
 	marshall2(body, &user)
-	user.DateConcert = api.RecupDate(user.ConcertDates)
-	user.LocationConcert = api.RecupLocation(user.Locations)
 
 	tpl, err := template.ParseFiles("front/page/viking.html")
 	if err != nil {
@@ -223,13 +225,6 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 	tpl.Execute(w, user)
 }
-
-
-
-
-
-
-
 
 // unmarshalls functions to create the struct
 

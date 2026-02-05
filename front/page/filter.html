@@ -12,10 +12,8 @@
         <div class="container">
             <div class="navbar">
                 <a href="/" class="logo">
-                    <img src="/Images/473.jpeg" alt="Logo" class="logo1"> 
+                    <img src="/Images/symbole.jpeg" alt="Logo" class="logo1"> 
                 </a>
-                
-                
                 <ul>
                     <li><a href="/">Accueil</a></li>
                     <li><a href="/aboutus">Plus sur nous</a></li>
@@ -31,36 +29,43 @@
                 <div class="filter-buttons">
                     <a class="filter-btn" href="?filter=verifDanemark">Né au Danemark</a>
                     <a class="filter-btn" href="?filter=verifSuède">Né en Suède</a>
-                    <a class="filter-btn" href="?filter=verifNorvège">Né en Norvègé</a>
-                    <a class="filter-btn" href="?filter=verifDébut">évolue durant le début l'age des vikings</a>
-                    <a class="filter-btn" href="?filter=verifExpansion">évolue durant l'expansion des vikings</a>
-                    <a class="filter-btn" href="?filter=verifApoge"> évolue durant l'apogée des vikings</a>
-                    <a class="filter-btn" href="?filter=verifFin"> évolue durant la fin de l'age des vikings</a>
-                    <a class="filter-btn reset-btn" href="?filter=réinitialiser">réinitialiser</a>
+                    <a class="filter-btn" href="?filter=verifNorvège">Né en Norvège</a>
+                    <a class="filter-btn" href="?filter=verifDébut">Début de l'âge des vikings</a>
+                    <a class="filter-btn" href="?filter=verifExpansion">Expansion des vikings</a>
+                    <a class="filter-btn" href="?filter=verifApoge">Apogée des vikings</a>
+                    <a class="filter-btn" href="?filter=verifFin">Fin de l'âge des vikings</a>
+                    <a class="filter-btn reset-btn" href="?filter=réinitialiser">Réinitialiser</a>
                 </div>
             </section>
             
             <h2 style="margin-top: 30px;">Résultats des Filtres</h2>
 
             <div class="cards-container">
-                {{ range . }}
-                <div class="card">
-                    <img src="{{ .Image }}" alt="{{ .Name }}">
-                    <div class="card-content">
-                        <h2>{{ .Name }}</h2>
-                        <p><strong>Premier album :</strong> {{ .FirstAlbum }}</p>
-                        <p><strong>Membres :</strong></p>
-                        <ul>
-                            {{ range .Members }}
-                            <li>{{ . }}</li>
-                            {{ end }}
-                        </ul>
-                        <form method="GET" action="/artist">
-                            <input type="hidden" name="id" value="{{ .ID }}">
-                            <button class="btn secondary" type="submit">Voir l'artiste</button>
-                        </form>
+                {{ if . }}
+                    {{ range . }}
+                    <div class="card"
+                         data-name="{{ .Name }}"
+                         data-birthday="{{ .Birthday }}"
+                         data-deadyear="{{ .Deadyears }}"
+                         data-time="{{ .Time }}"
+                         data-location="{{ .BirthLocation }}">
+                        
+                        <img src="{{ .Image }}" alt="{{ .Name }}" onerror="this.src='/Images/default.jpg'">
+                        <div class="card-content">
+                            <h2>{{ .Name }}</h2>
+                            <p><strong>Année de naissance :</strong> {{ if ne .Birthday 0 }}{{ .Birthday }}{{ else }}Inconnue{{ end }}</p>
+                            <p><strong>Année de mort :</strong> {{ if ne .Deadyears 0 }}{{ .Deadyears }}{{ else }}Inconnue{{ end }}</p>
+                            <p><strong>Période :</strong> {{ .Time }}</p>
+                            <p><strong>Pays de naissance :</strong> {{ .BirthLocation }}</p>
+                            <form method="GET" action="/artist">
+                                <input type="hidden" name="id" value="{{ .ID }}">
+                                <button class="btn secondary" type="submit">Voir le viking</button>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                    {{ end }}
+                {{ else }}
+                    <p>Aucun viking trouvé correspondant aux filtres sélectionnés.</p>
                 {{ end }}
             </div>
         </div>
@@ -68,7 +73,7 @@
 
     <footer>
         <div class="container">
-            <p>2025 Music Tracker</p>
+            <p>2025 Viking Tracker</p>
         </div>
     </footer>
 </body>

@@ -10,7 +10,7 @@ import (
 
 func ChooseArtisteAll() ([]byte, error) {
 
-	url := "https://groupietrackers.herokuapp.com/api/artists"
+	url := "https://apiyboostviking.osc-fr1.scalingo.io/data/viking.json"
 	response, err := http.Get(url)
 
 	if err != nil {
@@ -40,7 +40,7 @@ func ChooseArtisteAll() ([]byte, error) {
 
 func ChooseArtistePrecise(id string) ([]byte, error) {
 
-	url := "https://groupietrackers.herokuapp.com/api/artists/" + id
+	url := "https://apiyboostviking.osc-fr1.scalingo.io/data/viking.json/" + id
 	response, err := http.Get(url)
 
 	if err != nil {

@@ -109,9 +109,36 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 // the atist page
 func homeHandler2(w http.ResponseWriter, r *http.Request) {
 	id = r.URL.Query().Get("id")
-	body, err := api.ChooseArtistePrecise(id)
+	
+	// Récupère tous les vikings
+	body, err := api.ChooseArtisteAll()
+	if err != nil {
+		http.Error(w, "Erreur lors de la récupération des données: "+err.Error(), 500)
+		return
+	}
+
+	var users []Person
+	err = json.Unmarshal(body, &users)
+	if err != nil {
+		http.Error(w, "Erreur lors du traitement des données: "+err.Error(), 500)
+		return
+	}
+
+	// Filtre pour trouver le viking avec l'ID correspondant
 	var user Person
-	marshall2(body, &user)
+	found := false
+	for _, u := range users {
+		if fmt.Sprintf("%d", u.ID) == id {
+			user = u
+			found = true
+			break
+		}
+	}
+
+	if !found {
+		http.Error(w, "Viking non trouvé", 404)
+		return
+	}
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "viking.html"))
 	if err != nil {

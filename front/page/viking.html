@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Célèbre viking</title>
-    <link rel="stylesheet" href="/static/page/index.css">
+    <title>{{ .Name }} - Viking Tracker</title>
+    <link rel="stylesheet" href="/static/page/viking.css?v=2">
 </head>
-
 <body>
     <header>
         <div class="container">
@@ -15,20 +14,8 @@
                     <img src="/static/images/symbole.jpg" alt="Logo" class="logo1">
                 </a>
                 <h1 class="site-title">Viking Tracker</h1>
-                <form class="search-form" onsubmit="event.preventDefault(); filterArtists();">
-                    <input 
-                        type="text" 
-                        id="searchInput" 
-                        oninput="filterArtists()" 
-                        placeholder="Rechercher un viking, membre, raid, année..." 
-                        class="search-input"
-                    >
-                    <button type="button" class="search-button">
-                        <span class="material-icons">🔍</span>
-                    </button>
-                </form>
-                
                 <ul>
+
                     <li><a href="/filtre">Recherche approfondie</a></li>
                     <li><a href="/aboutus">A propos</a></li>
                 </ul>
@@ -37,35 +24,22 @@
     </header>
 
     <main>
-        <div class="cards-container" id="artistContainer">
-            {{/* Vérifie s'il y a au moins un viking */}}
-            {{ if . }}
-                {{/* Itère sur le slice de vikings */}}
-                {{ range . }}
-                <div class="card"
-                     data-name="{{ .Name }}"
-                     data-birthday="{{ .Birthday }}"
-                     data-deadyear="{{ .Deadyears }}"
-                     data-time="{{ .Time }}"
-                     data-location="{{ .BirthLocation }}">
+        <div class="container">
+            <div class="artist-detail">
+                
+                <div class="header-info">
+                    <img src="{{ .Image }}" alt="Photo de {{ .Name }}" class="artist-image" onerror="this.src='/static/images/default.jpg'">
                     
-                    <img src="{{ .Image }}" alt="{{ .Name }}" onerror="this.src='/static/images/default.jpg'">
-                    <div class="card-content">
+                    <div class="main-info">
                         <h1>{{ .Name }}</h1>
-                        <p><strong>Année de naissance : </strong> {{ if ne .Birthday 0 }}{{ .Birthday }}{{ else }}Inconnue{{ end }}</p>
-                        <p><strong>Année de mort : </strong> {{ if ne .Deadyears 0 }}{{ .Deadyears }}{{ else }}Inconnue{{ end }}</p>
-                        <p><strong>Période : </strong> {{ .Time }}</p>
-                        <p><strong>Pays de naissance : </strong> {{ .BirthLocation }}</p>
-                        <form method="GET" action="/artist">
-                            <input type="hidden" name="id" value="{{ .ID }}">
-                            <button class="btn secondary" type="submit">Voir le viking</button>
-                        </form>
+                        <p><strong>Année de naissance :</strong> {{ if ne .Birthday 0 }}{{ .Birthday }}{{ else }}Inconnue{{ end }}</p>
+                        <p><strong>Année de mort :</strong> {{ if ne .Deadyears 0 }}{{ .Deadyears }}{{ else }}Inconnue{{ end }}</p>
+                        <p><strong>Période :</strong> {{ .Time }}</p>
+                        <p><strong>Pays de naissance :</strong> {{ .BirthLocation }}</p>
                     </div>
                 </div>
-                {{ end }}
-            {{ else }}
-                <p>Aucun viking trouvé.</p>
-            {{ end }}
+
+            </div>
         </div>
     </main>
 </body>

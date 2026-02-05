@@ -1,75 +1,70 @@
 /* ======================================= */
-/* search.css - STYLES DE LA PAGE DE RECHERCHE ET FILTRES */
+/* filter.css - STYLES ALIGNES SUR INDEX */
 /* ======================================= */
 
-/* 1. Conteneur des filtres */
 .filter-panel {
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px;
+    background: rgba(255, 250, 240, 0.92);
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(80, 50, 30, 0.35);
+    margin-bottom: 24px;
 }
 
 .filter-panel h2 {
-    color: #3f51b5; /* Couleur primaire */
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #eee;
+    color: #4b2f1a;
+    font-size: 1.6em;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #d6b895;
 }
 
-/* 2. Style des boutons de filtres */
 .filter-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Espacement entre les boutons */
+    gap: 10px;
     align-items: center;
 }
 
+/* ici */
 .filter-btn {
     display: inline-block;
-    padding: 6px 12px;
-    background-color: #e8eaf6; /* Bleu très clair */
-    color: #3f51b5;
+    padding: 7px 14px;
+    background-color: #c89f72;
+    color: #2d2218;
     text-decoration: none;
-    border-radius: 15px; /* Bords arrondis pour un look de "tag" */
-    font-size: 0.9em;
+    border-radius: 14px;
+    font-size: 0.95em;
     font-weight: 600;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    border: 1px solid #c5cae9;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    border: 1px solid #b6895e;
 }
 
 .filter-btn:hover {
-    background-color: #3f51b5; /* Inversion des couleurs au survol */
-    color: white;
-    border-color: #3f51b5;
+    background-color: #5b3b22;
+    color: #ffffff;
+    border-color: #3b2415;
 }
 
-/* Bouton de réinitialisation spécifique */
 .reset-btn {
-    background-color: #ffcdd2; /* Rouge pâle */
-    color: #c62828; /* Rouge foncé */
-    border-color: #ef9a9a;
+    background-color: #7a311f;
+    color: #ffffff;
+    border-color: #5a2416;
 }
 
 .reset-btn:hover {
-    background-color: #c62828;
-    color: white;
+    background-color: #5a2416;
+    color: #ffffff;
 }
 
-/* 3. Mise en page des résultats (pour s'assurer qu'ils sont sous les filtres) */
 main .container {
-    padding-top: 20px; /* Un peu d'espace en haut de la page */
+    padding-top: 20px;
 }
 
-/* On s'assure que la grille des cartes réutilise le style de index.css */
 .cards-container {
-    /* (Styles de index.css devraient s'appliquer ici) */
     margin-top: 20px;
 }
 
-/* Responsive pour les boutons */
 @media (max-width: 600px) {
     .filter-buttons {
         flex-direction: column;

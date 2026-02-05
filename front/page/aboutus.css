@@ -1,155 +1,72 @@
 /* ======================================= */
-/* 1. RÉINITIALISATION ET FOND DE PAGE */
+/* aboutus.css - STYLES SPECIFIQUES */
 /* ======================================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* ======================================= */
-/* 2. HEADER ET NAVIGATION */
-/* ======================================= */
-header {
-    background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 70px;
-}
-
-/* Logo */
-.logo1 {
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* Liens de navigation */
-.navbar ul {
-    list-style: none;
-    display: flex;
-    margin-left: 20px;
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: #555;
-    padding: 10px 15px;
-    font-weight: bold;
-    transition: color 0.2s ease;
-}
-
-.navbar ul li a:hover {
-    color: #3f51b5;
-}
-
-/* ======================================= */
-/* 3. CONTENU PRINCIPAL */
-/* ======================================= */
-main {
-    flex: 1;
-    padding: 60px 20px;
-}
-
+/* Conteneur plus étroit pour le contenu texte */
 main .container {
-    max-width: 800px;
+    max-width: 900px;
 }
 
+/* Titre principal de la page */
 main h1 {
-    color: #3f51b5;
-    font-size: 2.5em;
-    margin-bottom: 30px;
+    color: #4b2f1a;
+    font-size: 2.4em;
+    margin-bottom: 24px;
     text-align: center;
-    border-bottom: 3px solid #3f51b5;
-    padding-bottom: 15px;
+    border-bottom: 2px solid #d6b895;
+    padding-bottom: 12px;
 }
 
+/* Sections avec style carte bois (comme l'index) */
 section {
-    background-color: #ffffff;
-    padding: 30px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #c89f72 0px,
+            #c89f72 6px,
+            #b6895e 6px,
+            #b6895e 12px
+        );
+    padding: 24px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.35),
+        inset 0 0 0 3px rgba(80,50,30,0.4);
+    overflow: hidden;
 }
 
 section h2 {
-    color: #3f51b5;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #eee;
+    color: #4b2f1a;
+    font-size: 1.6em;
+    margin-bottom: 12px;
+    padding: 12px;
+    border-bottom: 2px solid #d6b895;
+    background: rgba(255, 250, 240, 0.92);
+    border-radius: 6px 6px 0 0;
+    margin: -24px -24px 12px -24px;
 }
 
 section p {
-    font-size: 1.1em;
+    font-size: 1.05em;
     line-height: 1.8;
-    color: #555;
+    color: #2d2218;
+    background: rgba(255, 250, 240, 0.92);
+    padding: 18px;
+    border-radius: 6px;
 }
 
-/* ======================================= */
-/* 4. FOOTER */
-/* ======================================= */
-footer {
-    background-color: #ffffff;
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: auto;
-}
-
-footer p {
-    color: #666;
-    font-size: 0.95em;
-}
-
-/* ======================================= */
-/* 5. RESPONSIVE DESIGN */
-/* ======================================= */
 @media (max-width: 768px) {
-    .navbar {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .navbar ul {
-        margin: 10px 0 0 0;
-        width: 100%;
-        justify-content: center;
-    }
-    
     main h1 {
         font-size: 2em;
     }
-    
+
     section {
         padding: 20px;
     }
-    
+
     section h2 {
-        font-size: 1.5em;
+        font-size: 1.45em;
+        margin: -20px -20px 12px -20px;
     }
 }

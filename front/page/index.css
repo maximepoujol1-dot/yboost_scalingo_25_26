@@ -1,5 +1,5 @@
 /* ======================================= */
-/* 1. RÉINITIALISATION ET FOND DE PAGE */
+/* 1. RESET */
 /* ======================================= */
 * {
     margin: 0;
@@ -7,13 +7,39 @@
     box-sizing: border-box;
 }
 
+/* ======================================= */
+/* 2. FOND BOIS GLOBAL (CSS ONLY) */
+/* ======================================= */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7; /* Fond gris très clair pour le corps */
-    color: #333;
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    color: #2d2218;
     line-height: 1.6;
+
+    /* Effet bois via dégradés */
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #8b5a2b 0px,
+            #8b5a2b 8px,
+            #7a4d24 8px,
+            #7a4d24 16px,
+            #6b431f 16px,
+            #6b431f 24px
+        );
 }
 
+/* voile léger pour lisibilité */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.82);
+    z-index: -1;
+}
+
+/* ======================================= */
+/* CONTENEUR GLOBAL */
+/* ======================================= */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -21,11 +47,19 @@ body {
 }
 
 /* ======================================= */
-/* 2. HEADER ET NAVIGATION */
+/* 3. HEADER BOIS FONCÉ */
 /* ======================================= */
 header {
-    background-color: #ffffff; /* Fond blanc pour le header */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #3e2616 0px,
+            #3e2616 10px,
+            #2c1a0f 10px,
+            #2c1a0f 20px
+        );
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -35,89 +69,64 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 70px; /* Hauteur minimale de la barre de navigation */
+    min-height: 70px;
+    position: relative;
 }
 
 /* Logo */
-.logo1 {
-    height: 50px; /* Taille du logo */
-    border-radius: 50%;
-    object-fit: cover;
+.logo {
+    position: absolute;
+    left: 20px;
 }
 
-/* Liens de navigation */
+.logo1 {
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* Titre du site */
+.site-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f4d9a0;
+    font-size: 1.9em;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    letter-spacing: 1px;
+}
+
+/* ======================================= */
+/* NAVIGATION */
+/* ======================================= */
 .navbar ul {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     list-style: none;
     display: flex;
-    margin-left: 20px; /* Espace après la barre de recherche */
+    gap: 15px;
+    margin-left: 0;
 }
 
 .navbar ul li a {
     text-decoration: none;
-    color: #555;
-    padding: 10px 15px;
+    color: #f3e6d0;
     font-weight: bold;
-    transition: color 0.2s ease;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: 0.2s;
 }
 
 .navbar ul li a:hover {
-    color: #3f51b5; /* Bleu accent au survol */
+    background: #5b3b22;
+    color: #fff;
 }
 
 /* ======================================= */
-/* 3. BARRE DE RECHERCHE (Améliorée) */
-/* ======================================= */
-.search-form {
-    display: flex;
-    align-items: center;
-    flex-grow: 1; /* Prend l'espace disponible */
-    max-width: 450px; 
-    margin: 0 30px; 
-    border: 1px solid #ddd;
-    border-radius: 25px; /* Coins très arrondis */
-    overflow: hidden;
-    background-color: #fff;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08); 
-    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
-}
-
-.search-form:focus-within {
-    border-color: #3f51b5; 
-    box-shadow: 0 4px 8px rgba(63, 81, 181, 0.2);
-}
-
-.search-input {
-    flex-grow: 1;
-    padding: 10px 15px; 
-    border: none; 
-    outline: none; 
-    font-size: 15px;
-    color: #333;
-}
-
-.search-input::placeholder {
-    color: #aaa;
-}
-
-.search-button {
-    background-color: #3f51b5; 
-    color: white; 
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px; 
-}
-
-.search-button:hover {
-    background-color: #303f9f; 
-}
-
-/* ======================================= */
-/* 4. MAIN ET GRILLE D'ARTISTES */
+/* 4. MAIN */
 /* ======================================= */
 main {
     padding: 40px 20px;
@@ -126,120 +135,101 @@ main {
 .cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Espacement entre les cartes */
-    justify-content: center; /* Centrer les cartes dans le conteneur */
+    gap: 30px;
+    justify-content: center;
 }
 
 /* ======================================= */
-/* 5. CARTE D'ARTISTE INDIVIDUELLE */
+/* 5. CARTES STYLE PLANCHE DE BOIS */
 /* ======================================= */
 .card {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #c89f72 0px,
+            #c89f72 6px,
+            #b6895e 6px,
+            #b6895e 12px
+        );
+
+    border-radius: 12px;
+    max-width: 350px;
     width: 100%;
-    max-width: 350px; /* Taille maximale pour chaque carte */
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.35),
+        inset 0 0 0 3px rgba(80,50,30,0.4);
+
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Assurer que le JS utilise 'flex' si la carte est affichée */
+    display: flex;
     flex-direction: column;
+
+    transition: 0.25s;
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Léger soulèvement au survol */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-6px);
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.45),
+        inset 0 0 0 3px rgba(60,35,20,0.6);
 }
 
+/* Image */
 .card img {
     width: 100%;
     height: 200px;
-    object-fit: cover; /* Assure que l'image couvre bien la zone */
+    object-fit: cover;
 }
 
+/* contenu */
 .card-content {
     padding: 20px;
-    flex-grow: 1;
+    background: rgba(255, 250, 240, 0.92);
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
-.card-content h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #3f51b5; /* Nom de l'artiste en couleur accent */
-    font-size: 1.5em;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
+.card-content h1 {
+    color: #4b2f1a;
+    margin-bottom: 12px;
+    border-bottom: 2px solid #d6b895;
+    padding-bottom: 8px;
 }
 
-.card-content p {
-    margin-bottom: 8px;
-    font-size: 0.95em;
-}
-
-.card-content strong {
-    font-weight: 600;
-    color: #333;
-}
-
-.card-content ul {
-    list-style: disc inside;
-    padding-left: 0;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    color: #666;
-}
-
-.card-content ul li {
-    font-size: 0.9em;
-    padding-left: 5px;
-}
-
-/* Bouton "Voir l'artiste" */
-.card-content form {
-    margin-top: auto; /* Pousse le bouton vers le bas de la carte */
-    padding-top: 10px;
-}
-
+/* ======================================= */
+/* 6. BOUTON BOIS MASSIF */
+/* ======================================= */
 .btn.secondary {
-    display: block;
-    width: 100%;
+    margin-top: auto;
     padding: 10px;
-    background-color: #3f51b5;
+
+    background: #5b3b22;
     color: white;
-    text-align: center;
+
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.2s ease;
+    font-weight: bold;
+
+    transition: 0.2s;
 }
 
 .btn.secondary:hover {
-    background-color: #303f9f;
+    background: #3b2415;
 }
 
 /* ======================================= */
-/* 6. RESPONSIVE DESIGN (Optionnel) */
+/* 7. RESPONSIVE */
 /* ======================================= */
 @media (max-width: 768px) {
-    .navbar {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .search-form {
-        order: 3; /* Le met sous le logo */
-        width: 90%;
-        max-width: none;
-        margin: 10px 0;
-    }
-    .navbar ul {
-        margin: 10px 0 0 0;
-        order: 4;
-        width: 100%;
-        justify-content: center;
-    }
     .card {
-        max-width: 90%;
+        max-width: 95%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 10px;
     }
 }

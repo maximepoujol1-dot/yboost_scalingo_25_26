@@ -12,8 +12,6 @@ func Verifswitch(verifi map[string]bool, motsVerif string) {
 			verifi["verifDanemark"] = false
         } else {
             verifi["verifDanemark"] = true
-			verifi["verifSuède"] = false
-			verifi["verifNorvège"] = false
         }
 	
     case "verifSuède":
@@ -21,8 +19,6 @@ func Verifswitch(verifi map[string]bool, motsVerif string) {
             verifi["verifSuède"] = false
         } else {
             verifi["verifSuède"] = true
-			verifi["verifDanemark"] = false
-			verifi["verifNorvège"] = false
         }
 
 	case "verifNorvège":
@@ -30,8 +26,6 @@ func Verifswitch(verifi map[string]bool, motsVerif string) {
             verifi["verifNorvège"] = false
         } else {
             verifi["verifNorvège"] = true
-			verifi["verifDanemark"] = false
-			verifi["verifSuède"] = false
         }
 
 	case "réinitialiser":
@@ -46,9 +40,6 @@ func Verifswitch(verifi map[string]bool, motsVerif string) {
             verifi["verifFin"] = false
         } else {
             verifi["verifFin"] = true
-			verifi["verifApoge"] = false
-			verifi["verifExpansion"] = false
-			verifi["verifDébut"] = false
         }
 	
 
@@ -57,9 +48,6 @@ func Verifswitch(verifi map[string]bool, motsVerif string) {
             verifi["verifApoge"] = false
         } else {
             verifi["verifApoge"] = true
-			verifi["verifFin"] = false
-			verifi["verifExpansion"] = false
-			verifi["verifDébut"] = false
         }
 	
 
@@ -68,9 +56,6 @@ func Verifswitch(verifi map[string]bool, motsVerif string) {
             verifi["verifExpansion"] = false
         } else {
             verifi["verifExpansion"] = true
-			verifi["verifFin"] = false
-			verifi["verifApoge"] = false
-			verifi["verifDébut"] = false
         }
 
 	case "verifDébut":
@@ -78,9 +63,6 @@ func Verifswitch(verifi map[string]bool, motsVerif string) {
            verifi["verifDébut"] = false
         } else {
             verifi["verifDébut"] = true
-			verifi["verifFin"] = false
-			verifi["verifApoge"] = false
-			verifi["verifExpansion"] = false
         }
     }
 }

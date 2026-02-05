@@ -6,21 +6,25 @@ import (
 	api "viking-tracker/Api"
 	"html/template"
 	"net/http"
+	"os"
+	"path/filepath"
 )
 
 
 // struct for the API
 type Person struct {
-	ID              int      `json:"id"`
-	Image           string   `json:"image"`
-	Name            string   `json:"name"`
-	BirthLocation   string `json:"birthLocation"`
-	Time 			string `json:"time"`
-	Birthday        int   `json:"birthday"`
-	Deadyears       int   `json:"deadyears"`
+    ID            int    `json:"id"`
+    Image         string `json:"image"`
+    Name          string `json:"name"`
+    BirthLocation string `json:"birthLocation"`
+    Time          string `json:"time"`
+    Birthday      int    `json:"birthday"`
+    Deadyears     int    `json:"deadyears"`
 }
 
+
 var id string
+var templateDir string
 
 // truth table of filter
 var verif = map[string]bool{
@@ -39,13 +43,19 @@ var verif = map[string]bool{
     }
 
 
-
 func main() {
-	fsStyles := http.FileServer(http.Dir("./front/page"))
-	http.Handle("/static/", http.StripPrefix("/static/", fsStyles))
+	staticDir := "./front"
+	templateDir = "./front/page"
+	if exePath, err := os.Executable(); err == nil {
+		candidate := filepath.Join(filepath.Dir(exePath), "front")
+		if _, statErr := os.Stat(candidate); statErr == nil {
+			staticDir = candidate
+			templateDir = filepath.Join(candidate, "page")
+		}
+	}
 
-	fsImages := http.FileServer(http.Dir("./front/Images"))
-	http.Handle("/Images/", http.StripPrefix("/Images/", fsImages))
+	fsStatic := http.FileServer(http.Dir(staticDir))
+	http.Handle("/static/", http.StripPrefix("/static/", fsStatic))
 
 	http.HandleFunc("/redirect", redirectHandler)
 	http.HandleFunc("/", homeHandler)
@@ -53,9 +63,17 @@ func main() {
 	http.HandleFunc("/aboutus", homeHandler3)
 	http.HandleFunc("/filtre", homeHandler4)
 
-	fmt.Println("Server started at :8081")
-	fmt.Println("Serveur sur http://localhost:8081")
-	http.ListenAndServe(":8081", nil)
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8081" 
+	}
+
+	fmt.Println("Server started at :" + port)
+
+	err := http.ListenAndServe(":"+port, nil)
+	if err != nil {
+		fmt.Println("Server error:", err)
+	}
 }
 
 
@@ -73,14 +91,17 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 
 // the principale page
 func homeHandler(w http.ResponseWriter, r *http.Request) {
+	body, err := api.ChooseArtisteAll()
+	var users []Person
+	marshall1(body, &users)
 
-	tpl, err := template.ParseFiles("front/page/index.html")
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "index.html"))
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
 	}
 
-	tpl.Execute(w, nil)
+	tpl.Execute(w, users)
 }
 
 // the atist page
@@ -90,7 +111,7 @@ func homeHandler2(w http.ResponseWriter, r *http.Request) {
 	var user Person
 	marshall2(body, &user)
 
-	tpl, err := template.ParseFiles("front/page/viking.html")
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "viking.html"))
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
@@ -104,7 +125,7 @@ func homeHandler2(w http.ResponseWriter, r *http.Request) {
 // about us page
 func homeHandler3(w http.ResponseWriter, r *http.Request) {
 
-	tpl, err := template.ParseFiles("front/page/aboutus.html")
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "aboutus.html"))
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
@@ -128,7 +149,8 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if verif["verifSuède"] == true{
-		verif["verifSuède"] = false
+		verif["verifNorvège"] = false
+		verif["verifDanemark"] = false
 		var results []Person
 		for _, p := range user {
 			if p.BirthLocation == "Suède" {
@@ -139,7 +161,8 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if verif["verifNorvège"] == true{
-		verif["verifNorvège"] = false
+		verif["verifSuède"] = false
+		verif["verifDanemark"] = false
 		var results []Person
 		for _, p := range user {
 			if p.BirthLocation == "Norvège" {
@@ -150,7 +173,8 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if verif["verifDanemark"] == true{
-		verif["verifDanemark"] = false
+		verif["verifSuède"] = false
+		verif["verifNorvège"] = false
 		var results []Person
 		for _, p := range user {
 			if p.BirthLocation == "Danemark" {
@@ -161,7 +185,9 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if verif["verifDébut"] == true{
-		verif["verifDébut"] = false
+		verif["verifFin"] = false
+		verif["verifExpansion"] = false
+		verif["verifApoge"] = false
 		var results []Person
 		for _, p := range user {
 			if p.Time == "Début de l'age des vikings" {
@@ -172,7 +198,9 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if verif["verifExpansion"] == true{
-		verif["verifExpansion"] = false
+		verif["verifApoge"] = false
+		verif["verifFin"] = false
+		verif["verifDébut"] = false
 		var results []Person
 		for _, p := range user {
 			if p.Time == "Expansion des vikings" {
@@ -183,7 +211,9 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if verif["verifApoge"] == true{
-		verif["verifApoge"] = false
+		verif["verifExpansion"] = false
+		verif["verifFin"] = false
+		verif["verifDébut"] = false
 		var results []Person
 		for _, p := range user {
 			if p.Time == "Apogée des vikings" {
@@ -194,7 +224,9 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if verif["verifFin"] == true{
-		verif["verifFin"] = false
+		verif["verifApoge"] = false
+		verif["verifExpansion"] = false
+		verif["verifDébut"] = false
 		var results []Person
 		for _, p := range user {
 			if p.Time == "Fin de l'age des vikings" {
@@ -218,7 +250,7 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 
 	}
 
-	tpl, err := template.ParseFiles("front/page/filter.html")
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "filter.html"))
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return

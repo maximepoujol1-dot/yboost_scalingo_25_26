@@ -1,235 +1,185 @@
 /* ======================================= */
-/* 1. RESET */
+/* index.css - STYLES GLOBAUX */
 /* ======================================= */
+
+:root {
+    --wood-dark: #4b2f1a;
+    --wood-mid: #6f4526;
+    --wood-light: #c89f72;
+    --wood-light-2: #b6895e;
+    --paper: rgba(255, 250, 240, 0.93);
+    --paper-strong: rgba(255, 250, 240, 0.97);
+    --line: #d6b895;
+    --text: #2d2218;
+    --shadow: rgba(0, 0, 0, 0.35);
+}
+
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* ======================================= */
-/* 2. FOND BOIS GLOBAL (CSS ONLY) */
-/* ======================================= */
 body {
-    font-family: "Trebuchet MS", Arial, sans-serif;
-    color: #2d2218;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--text);
     line-height: 1.6;
-
-    /* Effet bois via dégradés */
+    min-height: 100vh;
     background:
-        repeating-linear-gradient(
-            90deg,
-            #8b5a2b 0px,
-            #8b5a2b 8px,
-            #7a4d24 8px,
-            #7a4d24 16px,
-            #6b431f 16px,
-            #6b431f 24px
-        );
+        radial-gradient(circle at 15% 20%, rgba(230, 198, 158, 0.32), transparent 35%),
+        radial-gradient(circle at 85% 10%, rgba(152, 103, 66, 0.25), transparent 33%),
+        linear-gradient(145deg, #e5d2bc 0%, #d3b08a 55%, #ba8e63 100%);
 }
 
-/* voile léger pour lisibilité */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(255,255,255,0.82);
-    z-index: -1;
-}
-
-/* ======================================= */
-/* CONTENEUR GLOBAL */
-/* ======================================= */
 .container {
-    max-width: 1200px;
+    width: min(1120px, 92%);
     margin: 0 auto;
-    padding: 0 20px;
 }
 
-/* ======================================= */
-/* 3. HEADER BOIS FONCÉ */
-/* ======================================= */
 header {
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #3e2616 0px,
-            #3e2616 10px,
-            #2c1a0f 10px,
-            #2c1a0f 20px
-        );
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 10;
+    background: linear-gradient(180deg, #5a371e 0%, #3d2412 100%);
+    border-bottom: 3px solid var(--line);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-height: 70px;
-    position: relative;
+    gap: 16px;
+    padding: 12px 0;
 }
 
-/* Logo */
 .logo {
-    position: absolute;
-    left: 20px;
+    display: inline-flex;
+    align-items: center;
 }
 
 .logo1 {
-    height: 50px;
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
     border-radius: 50%;
+    border: 2px solid #e7c69f;
 }
 
-/* Titre du site */
 .site-title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #f4d9a0;
-    font-size: 1.9em;
-    font-weight: bold;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    color: #f8ead8;
+    text-transform: uppercase;
     letter-spacing: 1px;
+    font-size: 1.3rem;
 }
 
-/* ======================================= */
-/* NAVIGATION */
-/* ======================================= */
 .navbar ul {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
     list-style: none;
     display: flex;
-    gap: 15px;
-    margin-left: 0;
+    align-items: center;
+    gap: 10px;
 }
 
-.navbar ul li a {
+.navbar a {
     text-decoration: none;
-    color: #f3e6d0;
-    font-weight: bold;
-    padding: 8px 14px;
-    border-radius: 6px;
-    transition: 0.2s;
+    color: #ffe9cf;
+    font-weight: 700;
 }
 
-.navbar ul li a:hover {
-    background: #5b3b22;
-    color: #fff;
+.navbar ul a {
+    display: inline-block;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(255, 223, 188, 0.08);
+    border: 1px solid rgba(255, 215, 170, 0.25);
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
-/* ======================================= */
-/* 4. MAIN */
-/* ======================================= */
+.navbar ul a:hover {
+    background: rgba(255, 223, 188, 0.2);
+    transform: translateY(-1px);
+}
+
 main {
-    padding: 40px 20px;
+    padding: 30px 0 40px;
 }
 
-.cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
+.page-title {
+    text-align: center;
+    margin-bottom: 26px;
+    color: var(--wood-dark);
+    font-size: 2.25rem;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 12px;
 }
 
-/* ======================================= */
-/* 5. CARTES STYLE PLANCHE DE BOIS */
-/* ======================================= */
-.card {
+.wood-card {
     background:
         repeating-linear-gradient(
             90deg,
-            #c89f72 0px,
-            #c89f72 6px,
-            #b6895e 6px,
-            #b6895e 12px
+            var(--wood-light) 0px,
+            var(--wood-light) 6px,
+            var(--wood-light-2) 6px,
+            var(--wood-light-2) 12px
         );
-
     border-radius: 12px;
-    max-width: 350px;
-    width: 100%;
-
     box-shadow:
-        0 6px 15px rgba(0,0,0,0.35),
-        inset 0 0 0 3px rgba(80,50,30,0.4);
-
+        0 6px 15px var(--shadow),
+        inset 0 0 0 3px rgba(80, 50, 30, 0.4);
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-
-    transition: 0.25s;
 }
 
-.card:hover {
-    transform: translateY(-6px);
-    box-shadow:
-        0 10px 25px rgba(0,0,0,0.45),
-        inset 0 0 0 3px rgba(60,35,20,0.6);
+.wood-card-inner {
+    background: var(--paper);
+    margin: 16px;
+    border-radius: 8px;
+    padding: 16px;
 }
 
-/* Image */
-.card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-/* contenu */
-.card-content {
-    padding: 20px;
-    background: rgba(255, 250, 240, 0.92);
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.card-content h1 {
-    color: #4b2f1a;
-    margin-bottom: 12px;
-    border-bottom: 2px solid #d6b895;
-    padding-bottom: 8px;
-}
-
-/* ======================================= */
-/* 6. BOUTON BOIS MASSIF */
-/* ======================================= */
-.btn.secondary {
-    margin-top: auto;
-    padding: 10px;
-
-    background: #5b3b22;
-    color: white;
-
+.btn {
+    display: inline-block;
+    text-decoration: none;
     border: none;
-    border-radius: 6px;
-
     cursor: pointer;
-    font-weight: bold;
-
-    transition: 0.2s;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-weight: 700;
+    background: var(--wood-mid);
+    color: #fff1df;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.btn.secondary:hover {
-    background: #3b2415;
+.btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
 }
 
-/* ======================================= */
-/* 7. RESPONSIVE */
-/* ======================================= */
-@media (max-width: 768px) {
-    .card {
-        max-width: 95%;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    .navbar {
-        flex-direction: column;
-        gap: 10px;
+    .site-title {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 1.95rem;
+    }
+
+    .navbar ul {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
     }
 }

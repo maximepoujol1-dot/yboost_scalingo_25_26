@@ -1,46 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Name }} - Viking Tracker</title>
-    <link rel="stylesheet" href="/static/page/viking.css?v=2">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viking Tracker - Detail</title>
+  <link rel="stylesheet" href="/static/page/index.css?v=1">
+  <link rel="stylesheet" href="/static/page/viking.css?v=1">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="navbar">
-                <a href="/" class="logo">
-                    <img src="/static/images/symbole.jpg" alt="Logo" class="logo1">
-                </a>
-                <h1 class="site-title">Viking Tracker</h1>
-                <ul>
+  <header>
+    <div class="container">
+      <div class="navbar">
+        <a href="/" class="logo">
+          <img src="/static/images/symbole.jpg" alt="Logo Viking Tracker" class="logo1">
+        </a>
+        <h1 class="site-title">Viking Tracker</h1>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/pays">Recherche approfondie</a></li>
+          <li><a href="/aboutus">A propos</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
 
-                    <li><a href="/filtre">Recherche approfondie</a></li>
-                    <li><a href="/aboutus">A propos</a></li>
-                </ul>
+  <main>
+    <div class="container detail-wrap">
+      <h2 class="page-title">Fiche Viking</h2>
+
+      <article class="wood-card viking-card">
+        <div class="viking-grid">
+          <div class="viking-image-block">
+            {{if .Image}}
+            <img class="viking-image" src="{{.Image}}" alt="Portrait de {{.Name}}">
+            {{else}}
+            <div class="viking-image placeholder">Image indisponible</div>
+            {{end}}
+          </div>
+
+          <div class="viking-content">
+            <div class="wood-card-inner">
+              <h3>{{.Name}}</h3>
+              <p><strong>Periode:</strong> {{.Periode}}</p>
+              <p><strong>Annee de naissance:</strong> {{.Burthyear}}</p>
+              <p><strong>Annee de deces:</strong> {{.Deadyear}}</p>
+              <a class="btn" href="/">Retour a la liste</a>
             </div>
+          </div>
         </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <div class="artist-detail">
-                
-                <div class="header-info">
-                    <img src="{{ .Image }}" alt="Photo de {{ .Name }}" class="artist-image" onerror="this.src='/static/images/default.jpg'">
-                    
-                    <div class="main-info">
-                        <h1>{{ .Name }}</h1>
-                        <p><strong>Année de naissance :</strong> {{ if ne .Birthday 0 }}{{ .Birthday }}{{ else }}Inconnue{{ end }}</p>
-                        <p><strong>Année de mort :</strong> {{ if ne .Deadyears 0 }}{{ .Deadyears }}{{ else }}Inconnue{{ end }}</p>
-                        <p><strong>Période :</strong> {{ .Time }}</p>
-                        <p><strong>Pays de naissance :</strong> {{ .BirthLocation }}</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </main>
+      </article>
+    </div>
+  </main>
 </body>
 </html>

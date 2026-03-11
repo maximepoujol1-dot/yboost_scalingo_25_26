@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Viking Tracker - Accueil</title>
+  <title>Viking Tracker - Recherche</title>
   <link rel="stylesheet" href="/static/page/index.css?v=1">
+  <link rel="stylesheet" href="/static/page/pays.css?v=1">
 </head>
 <body>
   <header>
@@ -25,7 +26,13 @@
 
   <main>
     <div class="container">
-      <h2 class="page-title">Explorateur de Vikings</h2>
+      <h2 class="page-title">Recherche Approfondie</h2>
+
+      <section class="wood-card filter-box">
+        <div class="wood-card-inner">
+          <p>Utilise cette vue pour filtrer et parcourir les vikings avec une presentation claire avant d'ajouter des filtres plus avances.</p>
+        </div>
+      </section>
 
       <section class="grid">
         {{range .}}
@@ -41,7 +48,7 @@
         {{else}}
         <article class="wood-card">
           <div class="wood-card-inner">
-            <p>Aucun viking a afficher pour le moment.</p>
+            <p>Aucun resultat disponible pour l'instant.</p>
           </div>
         </article>
         {{end}}

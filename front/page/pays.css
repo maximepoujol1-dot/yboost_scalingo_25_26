@@ -1,0 +1,22 @@
+/* ======================================= */
+/* pays.css - PAGE RECHERCHE */
+/* ======================================= */
+
+.filter-box {
+    margin-bottom: 22px;
+}
+
+.filter-box .wood-card-inner {
+    text-align: center;
+    font-size: 1.02rem;
+    line-height: 1.75;
+}
+
+.grid h3 {
+    color: #4b2f1a;
+    margin-bottom: 10px;
+}
+
+.grid p {
+    margin-bottom: 8px;
+}

@@ -29,7 +29,7 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	
 	if vikings == nil {
-	body, _ := FetchAll(os.Getenv("CLE_API"))
+	body, _ := FetchAll(os.Getenv("API_CLE"))
 
 	marshall1(body, &vikings)
 	}

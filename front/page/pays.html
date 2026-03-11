@@ -17,7 +17,6 @@
         <h1 class="site-title">Viking Tracker</h1>
         <ul>
           <li><a href="/">Accueil</a></li>
-          <li><a href="/pays">Recherche approfondie</a></li>
           <li><a href="/aboutus">A propos</a></li>
         </ul>
       </div>
@@ -25,35 +24,38 @@
   </header>
 
   <main>
-    <div class="container">
-      <h2 class="page-title">Recherche Approfondie</h2>
+  <div class="container">
+    <h2 class="page-title">Pays Scandinaves</h2>
 
-      <section class="wood-card filter-box">
-        <div class="wood-card-inner">
-          <p>Utilise cette vue pour filtrer et parcourir les vikings avec une presentation claire avant d'ajouter des filtres plus avances.</p>
-        </div>
-      </section>
-
-      <section class="grid">
-        {{range .}}
-        <article class="wood-card">
-          <div class="wood-card-inner">
-            <h3>{{.Name}}</h3>
-            <p><strong>Periode:</strong> {{.Periode}}</p>
-            <p><strong>Naissance:</strong> {{.Burthyear}}</p>
-            <p><strong>Mort:</strong> {{.Deadyear}}</p>
-            <a class="btn" href="/viking?id={{.Viking_id}}">Voir details</a>
-          </div>
-        </article>
-        {{else}}
-        <article class="wood-card">
-          <div class="wood-card-inner">
-            <p>Aucun resultat disponible pour l'instant.</p>
-          </div>
-        </article>
-        {{end}}
-      </section>
+    <section class="wood-card filter-box">
+    <div class="wood-card-inner">
+      <p>Cette page affiche les pays scandinaves recuperes via l'API.</p>
     </div>
+    </section>
+
+    <section class="grid">
+    {{range .}}
+    <article class="wood-card">
+      <div class="wood-card-inner">
+      <h3>{{.Country_name}}</h3>
+      {{if .Flag_country}}
+      <p><strong>Drapeau:</strong> <a href="{{.Flag_country}}" target="_blank" rel="noopener noreferrer">Voir</a></p>
+      {{else}}
+      <p><strong>Drapeau:</strong> Non disponible</p>
+      {{end}}
+      <p><strong>ID:</strong> {{.Country_id}}</p>
+      </div>
+    </article>
+    {{else}}
+    <article class="wood-card">
+      <div class="wood-card-inner">
+      <p>Aucun pays recupere depuis l'API pour le moment.</p>
+      </div>
+    </article>
+    {{end}}
+    </section>
+  </div>
+
   </main>
 </body>
 </html>

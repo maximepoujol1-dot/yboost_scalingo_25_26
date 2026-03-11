@@ -78,7 +78,7 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	
 	if pays==nil {
-		body, _ := FetchAll(os.Getenv("CLE_API"))
+		body, _ := FetchAll(os.Getenv("API_CLE"))
 
 		marshallCountry(body, &pays)
 	}

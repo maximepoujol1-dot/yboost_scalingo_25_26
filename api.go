@@ -9,9 +9,9 @@ import (
 
 //get the API of all artist
 
-func FetchAll(info string) ([]byte, error) {
+func FetchAll(url string) ([]byte, error) {
 
-	url := info
+	
 	response, err := http.Get(url)
 
 	if err != nil {

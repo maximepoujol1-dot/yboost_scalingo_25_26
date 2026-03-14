@@ -3,6 +3,7 @@ package main
 import (
 
 	"html/template"
+	"log"
 	"net/http"
 	"strconv"
 	"path/filepath"
@@ -28,8 +29,21 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 // the principale page
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	
-	if vikings == nil {
-		db.Preload("Country").Find(&vikings)
+	if len(pays) == 0 {
+		result := db.Find(&pays)
+		if result.Error != nil {
+			// Fallbacks for common Postgres naming styles.
+			if err := db.Table("country").Find(&pays).Error; err != nil {
+				if err2 := db.Table("countries").Find(&pays).Error; err2 != nil {
+					http.Error(w, "Erreur base de donnees (Country/country/countries): "+result.Error.Error(), http.StatusInternalServerError)
+					return
+				}
+			}
+		}
+
+		if len(pays) == 0 {
+			log.Println("Aucun pays trouve en base (table vide ou nom de table inattendu).")
+		}
 	}
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "index.html"))

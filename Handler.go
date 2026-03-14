@@ -77,7 +77,7 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
 
-	if pays == nil {
+	if len(pays) == 0 {
 		db.Find(&pays)
 	}
 
@@ -95,7 +95,7 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 		db.Preload("Viking").Find(&event)
 	}
 
-	tpl, err := template.ParseFiles(filepath.Join(templateDir, "index.html"))
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "event.html"))
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return

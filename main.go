@@ -11,6 +11,9 @@ import (
 var templateDir string
 
 func main() {
+
+	initDB()
+
 	staticDir := "./front"
 	templateDir = "./front/page"
 	if exePath, err := os.Executable(); err == nil {

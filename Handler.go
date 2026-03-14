@@ -3,7 +3,6 @@ package main
 import (
 
 	"html/template"
-	"log"
 	"net/http"
 	"strconv"
 	"path/filepath"
@@ -29,21 +28,8 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 // the principale page
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	
-	if len(pays) == 0 {
-		result := db.Find(&pays)
-		if result.Error != nil {
-			// Fallbacks for common Postgres naming styles.
-			if err := db.Table("country").Find(&pays).Error; err != nil {
-				if err2 := db.Table("countries").Find(&pays).Error; err2 != nil {
-					http.Error(w, "Erreur base de donnees (Country/country/countries): "+result.Error.Error(), http.StatusInternalServerError)
-					return
-				}
-			}
-		}
-
-		if len(pays) == 0 {
-			log.Println("Aucun pays trouve en base (table vide ou nom de table inattendu).")
-		}
+	if vikings == nil {
+		db.Preload("Country").Find(&vikings)
 	}
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "index.html"))
@@ -88,10 +74,10 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w, nil)
 }
 
-
+// filter page
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
 
-	if len(pays) == 0 {
+	if pays == nil {
 		db.Find(&pays)
 	}
 
@@ -101,19 +87,4 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	tpl.Execute(w, pays)
-}
-
-func homeHandler5(w http.ResponseWriter, r *http.Request) {
-	
-	if event == nil {
-		db.Preload("Viking").Find(&event)
-	}
-
-	tpl, err := template.ParseFiles(filepath.Join(templateDir, "event.html"))
-	if err != nil {
-		http.Error(w, err.Error(), 500)
-		return
-	}
-
-	tpl.Execute(w, event)
 }

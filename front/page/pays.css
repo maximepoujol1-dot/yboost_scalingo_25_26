@@ -20,3 +20,22 @@
 .grid p {
     margin-bottom: 8px;
 }
+
+/* Taille max des cartes pays */
+.grid .wood-card {
+    max-width: 280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Taille fixe des drapeaux */
+.grid .wood-card-inner img {
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 0 auto 12px;
+    border: 2px solid #c89f72;
+}

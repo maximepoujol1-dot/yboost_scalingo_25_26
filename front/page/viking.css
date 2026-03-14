@@ -21,16 +21,20 @@
     background: rgba(255, 250, 240, 0.55);
     border-radius: 8px;
     padding: 10px;
+    max-width: 320px;
+    width: 100%;
 }
 
 .viking-image {
+    display: block;
     width: 100%;
-    height: 100%;
+    max-width: 300px;
     min-height: 280px;
     max-height: 360px;
     object-fit: cover;
     border-radius: 8px;
     border: 2px solid #d6b895;
+    margin: 0 auto;
 }
 
 .placeholder {

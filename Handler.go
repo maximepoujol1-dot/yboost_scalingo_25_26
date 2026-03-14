@@ -88,3 +88,18 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	}
 	tpl.Execute(w, pays)
 }
+
+func homeHandler5(w http.ResponseWriter, r *http.Request) {
+	
+	if event == nil {
+		db.Preload("Viking").Find(&event)
+	}
+
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "index.html"))
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+
+	tpl.Execute(w, event)
+}

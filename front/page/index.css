@@ -160,6 +160,25 @@ main {
     gap: 20px;
 }
 
+/* Taille max des cartes viking */
+.grid .wood-card {
+    max-width: 280px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Taille fixe des images viking */
+.grid .wood-card-inner img {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 0 auto 12px;
+    border: 2px solid #c89f72;
+}
+
 @media (max-width: 900px) {
     .navbar {
         flex-wrap: wrap;

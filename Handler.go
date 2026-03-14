@@ -77,7 +77,7 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 // filter page
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
 
-	if pays == nil {
+	if len(pays) == 0 {
 		db.Find(&pays)
 	}
 

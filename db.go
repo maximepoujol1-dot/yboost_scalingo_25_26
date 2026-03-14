@@ -43,10 +43,5 @@ func initDB() {
         log.Printf("✓ Connexions actives: %d", sqlDB.Stats().OpenConnections)
     }
 
-	// AutoMigrate crée la table si elle n'existe pas
-	if err := db.AutoMigrate(Viking{}); err != nil {
-		log.Printf("Avertissement migration : %v", err)
-	}
-
 	log.Println("Base de données connectée et migrée avec succès")
 }

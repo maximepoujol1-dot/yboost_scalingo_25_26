@@ -14,6 +14,9 @@ func main() {
 
 	initDB()
 
+	db.Find(&pays)
+	db.Preload("Country").Find(&vikings)
+
 	staticDir := "./front"
 	templateDir = "./front/page"
 	if exePath, err := os.Executable(); err == nil {

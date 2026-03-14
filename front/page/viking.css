@@ -42,7 +42,7 @@
 }
 
 .viking-content h3 {
-    color: #4b2f1a;
+    color: hsl(26, 49%, 20%);
     margin-bottom: 10px;
     font-size: 1.65rem;
 }

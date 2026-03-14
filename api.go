@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"encoding/json"
+	"io"
 )
 
 //get the API of all artist
@@ -88,4 +89,18 @@ func marshallCountry(jsonFromApi []byte, truc *[]Country) {
 	if err != nil {
 		fmt.Println("Error unmarshalling json:", err)
 	}
+}
+
+func FetchCountry() {
+
+	resp, err := http.Get("https://api.openstreetmap.org/api/0.6/node/123")
+		if err != nil {
+			panic(err)
+		}
+
+		defer resp.Body.Close()
+
+		body, _ := io.ReadAll(resp.Body)
+
+		fmt.Println(string(body))
 }

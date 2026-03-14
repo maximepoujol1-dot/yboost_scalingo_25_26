@@ -47,7 +47,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 
 func homeHandler2(w http.ResponseWriter, r *http.Request) {
 	id := r.URL.Query().Get("id")
-	info :=os.Getenv("CLE_API")
+	info :=os.Getenv("API_CLE")
 	body, err := FetchPrecise(info, id)
 	var theviking Viking
 	marshall2(body, &theviking)

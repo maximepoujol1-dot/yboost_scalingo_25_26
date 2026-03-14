@@ -1,32 +1,26 @@
 package main
 
-import "gorm.io/gorm"
 
-type Note struct {
-	gorm.Model
-	viking_id uint   `gorm:"not null;index"`
-	Content   string `gorm:"not null"`
-}
 
-//struct API
+
 
 type Viking struct{
-	Viking_id  	int 	`json:"viking_id"`
-	Image      	string 	`json:"image"`
-	Name       	string 	`json:"name"`
-	Burthyear 	int 	`json:"burthyear "`
-	Deadyear 	int 	`json:"deathyear"`
-	Periode 	string 	`json:"periode"`
+	viking_id 	uint   `gorm:"not null;index"`
+	Image     	string `gorm:"image"`
+	Name      	string `gorm:"name"`
+	Burthyear 	int    `gorm:"burthyear"`
+	Deadyear  	int    `gorm:"deathyear"`
+	Periode   	string `gorm:"periode"`
 }
 
 type Event struct{	
-	Viking_id 	int 	`json:"viking_id"`
-	Name_event 	string 	`json:"viking_id"`
-	Event_id 	int 	`json:"viking_id"`
+	Viking_id  	int    `gorm:"viking_id"`
+	Name_event 	string `gorm:"name_event"`
+	Event_id   	int    `gorm:"event_id"`
 }
 
 type Country struct{
-	Country_id 		int 	`json:"viking_id"`
-	Country_name 	string 	`json:"viking_id"`
-	Flag_country 	string 	`json:"viking_id"`
+	Country_id   int    `gorm:"country_id"`
+	Country_name string `gorm:"country_name"`
+	Flag_country string `gorm:"flag_country"`
 }

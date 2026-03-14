@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Viking Tracker - Recherche</title>
   <link rel="stylesheet" href="/static/page/index.css?v=1">
   <link rel="stylesheet" href="/static/page/pays.css?v=1">
+
+  <style>
+   #map {
+  height: 300px;       
+  width: 100%;         
+  max-width: 800px;     
+  margin: 40px auto 0;  
+  border: 4px solid #6b4a2e;
+}
+  </style>
 </head>
 <body>
   <header>
@@ -56,6 +69,30 @@
     </section>
   </div>
 
-  </main>
+   <div id="map"></div>
+    </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+  <script>
+    var map = L.map('map').setView([61.7,4.60], 3.5);
+    var marker = L.marker([	55.42,10.47]).addTo(map);
+    marker.bindPopup("<b>Danemark</b><br>Les lego ont étaient inventé au Danemark en 1932").openPopup();
+    var marker2 = L.marker([	59.555,17.061]).addTo(map);
+    marker2.bindPopup("<b>Suède</b><br>C'est en suède que vut le jour Alfred Nobel, l'inventeur de la dynamite").openPopup();
+    var marker3 = L.marker([	60.95,6.35]).addTo(map);
+    marker3.bindPopup("<b>Norèvge</b><br>C'est en norvège qu'on décide du prix nobel de la paix").openPopup();
+    var marker4 = L.marker([	65.22,-20.46]).addTo(map);
+    marker4.bindPopup("<b>Island</b><br>L'Island est un pas rude mais connu pour ses nombreuse source termal").openPopup();
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' //pas besoin de variable d'environneent car cela est déjà public
+}).addTo(map);
+  </script>
+
+ 
 </body>
 </html>
+

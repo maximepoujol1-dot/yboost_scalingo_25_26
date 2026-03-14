@@ -42,7 +42,7 @@ func initDB() {
     }
 
 	// AutoMigrate crée la table si elle n'existe pas
-	if err := db.AutoMigrate(&Note{}); err != nil {
+	if err := db.AutoMigrate(Viking{}); err != nil {
 		log.Printf("Avertissement migration : %v", err)
 	}
 

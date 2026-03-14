@@ -40,20 +40,31 @@
   <div class="container">
     <h2 class="page-title">Pays Scandinaves</h2>
 
+    <section class="pays-grid">
     {{range .}}
-    <article class="wood-card">
-      <div class="wood-card-inner">
-        <img src="{{.Flag_country}}" alt="{{.Country_name}}">
-        <h3>{{.Country_name}}</h3>
+    <article class="pays-card wood-card">
+      <div class="pays-card-inner">
+        <h2 class="pays-title">{{.Country_name}}</h2>
+        <div class="pays-body">
+          <div class="pays-sub-card">
+            <h3 class="pays-sub-title">Drapeau</h3>
+            <img class="pays-flag" src="{{.Flag_country}}" alt="Drapeau {{.Country_name}}">
+          </div>
+          <div class="pays-sub-card">
+            <h3 class="pays-sub-title">Historique</h3>
+            <p class="pays-history-empty">Historique a venir...</p>
+          </div>
+        </div>
       </div>
-    </article> 
+    </article>
     {{else}}
     <article class="wood-card">
       <div class="wood-card-inner">
-      <p>Aucun pays recupere depuis l'API pour le moment.</p>
+        <p>Aucun pays recupere depuis l'API pour le moment.</p>
       </div>
     </article>
     {{end}}
+    </section>
   </div>
 
    <div id="map"></div>

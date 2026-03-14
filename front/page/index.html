@@ -27,16 +27,7 @@
       <h2 class="page-title">Explorateur de Vikings</h2>
 
       <section class="grid">
-        {{range .}}
-        <article class="wood-card">
-          <div class="wood-card-inner">
-            <h3>{{.Name}}</h3>
-            <p><strong>Periode:</strong> {{.Periode}}</p>
-            <p><strong>Naissance:</strong> {{.Burthyear}}</p>
-            <p><strong>Mort:</strong> {{.Deadyear}}</p>
-            <a class="btn" href="/viking?id={{.Viking_id}}">Voir details</a>
-          </div>
-        </article>
+        
         {{else}}
         <article class="wood-card">
           <div class="wood-card-inner">

@@ -17,7 +17,7 @@
         <h1 class="site-title">Viking Tracker</h1>
         <ul>
           <li><a href="/">Accueil</a></li>
-          <li><a href="/pays">Recherche approfondie</a></li>
+          <li><a href="/pays">Pays Scandinaves</a></li>
           <li><a href="/aboutus">A propos</a></li>
         </ul>
       </div>
@@ -25,31 +25,7 @@
   </header>
 
   <main>
-    <div class="container detail-wrap">
-      <h2 class="page-title">Fiche Viking</h2>
-
-      <article class="wood-card viking-card">
-        <div class="viking-grid">
-          <div class="viking-image-block">
-            {{if .Image}}
-            <img class="viking-image" src="{{.Image}}" alt="Portrait de {{.Name}}">
-            {{else}}
-            <div class="viking-image placeholder">Image indisponible</div>
-            {{end}}
-          </div>
-
-          <div class="viking-content">
-            <div class="wood-card-inner">
-              <h3>{{.Name}}</h3>
-              <p><strong>Periode:</strong> {{.Periode}}</p>
-              <p><strong>Annee de naissance:</strong> {{.Burthyear}}</p>
-              <p><strong>Annee de deces:</strong> {{.Deadyear}}</p>
-              <a class="btn" href="/">Retour a la liste</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
+    
   </main>
 </body>
 </html>

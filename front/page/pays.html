@@ -46,19 +46,7 @@
     </div>
     </section>
 
-    <section class="grid">
-    {{range .}}
-    <article class="wood-card">
-      <div class="wood-card-inner">
-      <h3>{{.Country_name}}</h3>
-      {{if .Flag_country}}
-      <p><strong>Drapeau:</strong> <a href="{{.Flag_country}}" target="_blank" rel="noopener noreferrer">Voir</a></p>
-      {{else}}
-      <p><strong>Drapeau:</strong> Non disponible</p>
-      {{end}}
-      <p><strong>ID:</strong> {{.Country_id}}</p>
-      </div>
-    </article>
+    
     {{else}}
     <article class="wood-card">
       <div class="wood-card-inner">

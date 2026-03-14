@@ -173,7 +173,8 @@ main {
     width: 100%;
     max-width: 200px;
     height: 150px;
-    object-fit: cover;
+    object-fit: contain;
+    background: rgba(255, 250, 240, 0.75);
     border-radius: 6px;
     margin: 0 auto 12px;
     border: 2px solid #c89f72;

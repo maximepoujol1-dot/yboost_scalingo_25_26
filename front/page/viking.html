@@ -25,15 +25,44 @@
   </header>
 
   <main>
-    <article class="wood-card">
+    <div class="container detail-wrap">
+      <section class="viking-grid">
+        <article class="wood-card viking-card image-card">
           <div class="wood-card-inner">
-            <img src="{{.Image}}" alt="{{.Name}}">
+            <h2 class="section-title">Portrait</h2>
+            {{if .Image}}
+              <img class="viking-image" src="{{.Image}}" alt="{{.Name}}">
+            {{else}}
+              <div class="viking-image placeholder">Image indisponible</div>
+            {{end}}
+          </div>
+        </article>
+
+        <article class="wood-card viking-card info-card">
+          <div class="wood-card-inner viking-content">
+            <h2 class="section-title">Historique</h2>
             <h3>{{.Name}}</h3>
             <p><strong>Periode:</strong> {{.Periode}}</p>
-            <p><strong>Naissance:</strong> {{.Burthyear}}</p>
-            <p><strong>Mort:</strong> {{.Deadyear}}</p>
+
+            {{if .Burthyear}}
+              <p><strong>Naissance:</strong> {{.Burthyear}}</p>
+            {{else}}
+              <p><strong>Naissance:</strong> inconnu</p>
+            {{end}}
+
+            {{if .Deadyear}}
+              <p><strong>Mort:</strong> {{.Deadyear}}</p>
+            {{else}}
+              <p><strong>Mort:</strong> inconnu</p>
+            {{end}}
+
+            {{if .Country.Country_name}}
+              <p><strong>Pays:</strong> {{.Country.Country_name}}</p>
+            {{end}}
           </div>
-    </article>
+        </article>
+      </section>
+    </div>
   </main>
 </body>
 </html>

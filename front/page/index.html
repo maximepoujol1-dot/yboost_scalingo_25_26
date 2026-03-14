@@ -33,7 +33,12 @@
             <img src="{{.Image}}" alt="{{.Name}}">
             <h3>{{.Name}}</h3>
             <p><strong>Periode:</strong> {{.Periode}}</p>
-            <p><strong>Naissance:</strong> {{.Burthyear}}</p>
+            {{if .Burthyear}}
+              <p><strong>Naissance:</strong> {{.Burthyear}}</p>
+            {{else}}
+              <p><strong>Naissance:</strong> inconnu</p>
+            {{end}}
+
             <p><strong>Mort:</strong> {{.Deadyear}}</p>
             <a class="btn" href="/viking?id={{.Viking_id}}">Voir details</a>
           </div>

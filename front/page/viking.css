@@ -3,35 +3,27 @@
 /* ======================================= */
 
 .detail-wrap {
-    max-width: 980px;
+    max-width: 1160px;
 }
 
 .viking-card {
-    padding: 16px;
+    height: 100%;
 }
 
 .viking-grid {
     display: grid;
-    grid-template-columns: minmax(220px, 320px) 1fr;
-    gap: 16px;
+    grid-template-columns: minmax(280px, 420px) minmax(360px, 1fr);
+    gap: 22px;
     align-items: stretch;
-}
-
-.viking-image-block {
-    background: rgba(255, 250, 240, 0.55);
-    border-radius: 8px;
-    padding: 10px;
-    max-width: 320px;
-    width: 100%;
 }
 
 .viking-image {
     display: block;
     width: 100%;
-    max-width: 300px;
-    min-height: 280px;
-    max-height: 360px;
-    object-fit: cover;
+    max-width: 360px;
+    height: 420px;
+    object-fit: contain;
+    background: rgba(255, 250, 240, 0.75);
     border-radius: 8px;
     border: 2px solid #d6b895;
     margin: 0 auto;
@@ -45,6 +37,18 @@
     background: rgba(255, 250, 240, 0.85);
 }
 
+.section-title {
+    margin-bottom: 14px;
+    color: #4b2f1a;
+    font-size: 1.55rem;
+    border-bottom: 2px solid #d6b895;
+    padding-bottom: 8px;
+}
+
+.viking-content {
+    height: 100%;
+}
+
 .viking-content h3 {
     color: hsl(26, 49%, 20%);
     margin-bottom: 10px;
@@ -55,13 +59,27 @@
     margin-bottom: 10px;
 }
 
+.event-title {
+    margin-top: 18px;
+    margin-bottom: 8px;
+    color: #4b2f1a;
+    font-size: 1.15rem;
+}
+
+.event-list {
+    padding-left: 20px;
+}
+
+.event-list li {
+    margin-bottom: 7px;
+}
+
 @media (max-width: 860px) {
     .viking-grid {
         grid-template-columns: 1fr;
     }
 
     .viking-image {
-        min-height: 220px;
-        max-height: 320px;
+        height: 300px;
     }
 }

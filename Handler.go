@@ -74,7 +74,7 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w, nil)
 }
 
-// filter page
+
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
 
 	if pays == nil {

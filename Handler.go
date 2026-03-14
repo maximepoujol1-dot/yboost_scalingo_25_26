@@ -4,7 +4,7 @@ import (
 
 	"html/template"
 	"net/http"
-	"os"
+	
 	"path/filepath"
 
 )
@@ -28,6 +28,9 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 // the principale page
 func homeHandler(w http.ResponseWriter, r *http.Request) {
 	
+	if vikings == nil {
+		db.Preload("Country").Find(&vikings)
+	}
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "index.html"))
 	if err != nil {
@@ -40,6 +43,15 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 
 
 func homeHandler2(w http.ResponseWriter, r *http.Request) {
+	id := r.URL.Query().Get("id")
+	finalId, err:= strconv.Atoi(id)
+	if err != nil {
+		http.Error(w, "ID invalide", http.StatusBadRequest)
+		return
+	}
+
+	var theviking Viking
+	db.Preload("Country").Preload("Events").First(&theviking,finalId)
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "viking.html"))
 	if err != nil {
@@ -49,7 +61,6 @@ func homeHandler2(w http.ResponseWriter, r *http.Request) {
 
 	tpl.Execute(w, theviking)
 }
-
 
 
 // about us page
@@ -65,7 +76,10 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 
 // filter page
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
-	
+
+	if pays == nil {
+		db.Find(&pays)
+	}
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "pays.html"))
 	if err != nil {

@@ -45,8 +45,13 @@
       <p>Cette page affiche les pays scandinaves recuperes via l'API.</p>
     </div>
     </section>
-
-    
+    {{range .}}
+    <article class="wood-card">
+      <div class="wood-card-inner">
+        <img src="/static/flags/{{.Flag_country}}" alt="{{.Country_name}}">
+        <h3>{{.Country_name}}</h3>
+      </div>
+    </article> 
     {{else}}
     <article class="wood-card">
       <div class="wood-card-inner">
@@ -54,7 +59,6 @@
       </div>
     </article>
     {{end}}
-    </section>
   </div>
 
    <div id="map"></div>

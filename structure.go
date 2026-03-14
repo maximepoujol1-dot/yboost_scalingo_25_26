@@ -1,26 +1,29 @@
 package main
 
-
-
-
-
 type Viking struct{
-	viking_id 	uint   `gorm:"not null;index"`
-	Image     	string `gorm:"image"`
-	Name      	string `gorm:"name"`
-	Burthyear 	int    `gorm:"burthyear"`
-	Deadyear  	int    `gorm:"deathyear"`
-	Periode   	string `gorm:"periode"`
+	Viking_id 	uint   `gorm:"primaryKey"`
+	Image     	string 
+	Name      	string 
+	Burthyear 	int    
+	Deadyear  	int    
+	Periode   	string 
+	CountryID  uint      
+	Country    Country `gorm:"foreignKey:CountryID"` // Relation avec Country
+	Events     []Event `gorm:"foreignKey:VikingID"` // Relation  avec Event
 }
 
 type Event struct{	
-	Viking_id  	int    `gorm:"viking_id"`
-	Name_event 	string `gorm:"name_event"`
-	Event_id   	int    `gorm:"event_id"`
+	Event_id   	uint    `gorm:"primaryKey"`
+	Name_event 	string 
+	VikingID  uint 
+	Viking    Viking `gorm:"foreignKey:VikingID"` // Relation Many-to-One
+	
+	
 }
 
 type Country struct{
-	Country_id   int    `gorm:"country_id"`
-	Country_name string `gorm:"country_name"`
-	Flag_country string `gorm:"flag_country"`
+	Country_id   int    `gorm:"primaryKey"`
+	Country_name string
+	Flag_country string 
+	Vikings     []Viking `gorm:"foreignKey:CountryID"` // Relation One-to-Many
 }

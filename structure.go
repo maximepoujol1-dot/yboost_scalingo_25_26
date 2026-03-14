@@ -11,6 +11,10 @@ type Viking struct{
     Country   Country `gorm:"foreignKey:CountryID;references:Country_id"` // relation
 }
 
+func (Viking) TableName() string {
+    return "Viking" // le nom exact de ta table Supabase
+}
+
 type Event struct{	
 	Event_id   	uint    `gorm:"primaryKey;column:event_id"`
 	Name_event 	string 	`gorm:"column:name_event"`
@@ -18,9 +22,17 @@ type Event struct{
 	Viking    Viking `gorm:"foreignKey:VikingID"` // Relation
 }
 
+func (Event) TableName() string {
+    return "Event" // le nom exact de ta table Supabase
+}
+
 type Country struct{
 
 	Country_id   uint     `gorm:"primaryKey;column:country_id"`
     Country_name string   `gorm:"column:country_name"`
 	Flag_country string   `gorm:"column:flag_country"`
+}
+
+func (Country) TableName() string {
+    return "Country" // le nom exact de ta table Supabase
 }

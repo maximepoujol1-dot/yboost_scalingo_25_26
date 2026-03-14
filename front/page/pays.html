@@ -40,7 +40,6 @@
   <div class="container">
     <h2 class="page-title">Pays Scandinaves</h2>
 
-    <section class="grid">
     {{range .}}
     <article class="wood-card">
       <div class="wood-card-inner">
@@ -51,11 +50,10 @@
     {{else}}
     <article class="wood-card">
       <div class="wood-card-inner">
-        <p>Aucun pays recupere depuis l'API pour le moment.</p>
+      <p>Aucun pays recupere depuis l'API pour le moment.</p>
       </div>
     </article>
     {{end}}
-    </section>
   </div>
 
    <div id="map"></div>

@@ -13,6 +13,8 @@ import (
 var db *gorm.DB
 
 func initDB() {
+
+	
 	dsn := os.Getenv("DATABASE_URL")
 	if dsn == "" {
 		log.Fatal("La variable d'environnement DATABASE_URL est requise")

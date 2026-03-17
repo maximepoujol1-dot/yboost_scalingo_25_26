@@ -76,10 +76,9 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 
 // filter page
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
-	var countries []Country
-	if err := db.Preload("Viking").Order("country_id").Find(&countries).Error; err != nil {
-		http.Error(w, err.Error(), 500)
-		return
+
+	if len(pays) == 0 {
+		db.Preload("Viking").Find(&pays)
 	}
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "pays.html"))
@@ -87,9 +86,6 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-	if err := tpl.Execute(w, countries); err != nil {
-		http.Error(w, err.Error(), 500)
-		return
-	}
+	tpl.Execute(w, pays)
 }
 

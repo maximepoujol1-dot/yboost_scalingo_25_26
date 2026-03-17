@@ -14,7 +14,7 @@ func main() {
 
 	initDB()
 
-	db.Find(&pays)
+	db.Preload("Viking").Find(&pays)
 	db.Preload("Country").Find(&vikings)
 
 	staticDir := "./front"

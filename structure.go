@@ -31,6 +31,10 @@ type Country struct{
 	Flag_country string   `gorm:"column:flag_country"`
     Population string       `gorm:"column:population"`
     Politique string `gorm:"column:politique"`
+
+    VikingID uint   `gorm:"column:viking_id"` 
+    Viking Viking `gorm:"foreignKey:VikingID;references:Viking_id"` // relation
+
 }
 
 func (Country) TableName() string {

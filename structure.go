@@ -33,7 +33,7 @@ type Country struct{
     Politique string `gorm:"column:politique"`
 
     VikingID uint   `gorm:"column:viking_id"` 
-    Viking Viking []`gorm:"foreignKey:VikingID;references:Viking_id"` // relation
+    Viking *Viking `gorm:"foreignKey:VikingID;references:Viking_id"` // relation
 
 }
 

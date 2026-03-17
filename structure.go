@@ -18,8 +18,6 @@ func (Viking) TableName() string {
 type Event struct{	
 	Event_id   	uint    `gorm:"primaryKey;column:event_id"`
 	Name_event 	string 	`gorm:"column:name_event"`
-	VikingID  uint 		`gorm:"column:viking_id"`
-	Viking    Viking `gorm:"foreignKey:VikingID"` // Relation
 }
 
 func (Event) TableName() string {
@@ -31,6 +29,8 @@ type Country struct{
 	Country_id   uint     `gorm:"primaryKey;column:country_id"`
     Country_name string   `gorm:"column:country_name"`
 	Flag_country string   `gorm:"column:flag_country"`
+    Population string       `gorm:"column:population"`
+    Politique string `gorm:"column:politique"`
 }
 
 func (Country) TableName() string {

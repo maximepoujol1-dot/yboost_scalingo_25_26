@@ -93,13 +93,6 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 
 	if len(event) == 0 {
 		db.Preload("Vikings").Find(&event)
-
-		for _, e := range event {
-			fmt.Println("Event:", e.Name_event)
-			for _, v := range e.Vikings {
-				fmt.Println(" - Viking:", v.Name)
-			}
-		}
 	}
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "pays.html"))

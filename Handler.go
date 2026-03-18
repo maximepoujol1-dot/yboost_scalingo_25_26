@@ -95,7 +95,7 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 		db.Preload("Vikings").Find(&event)
 	}
 
-	tpl, err := template.ParseFiles(filepath.Join(templateDir, "pays.html"))
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "event.html"))
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return

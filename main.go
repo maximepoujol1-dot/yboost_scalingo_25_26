@@ -45,6 +45,7 @@ func main() {
 	http.HandleFunc("/viking", homeHandler2)
 	http.HandleFunc("/aboutus", homeHandler3)
 	http.HandleFunc("/pays", homeHandler4)
+	http.HandleFunc("/event", homeHandler5)
 
 
 	port := os.Getenv("PORT")

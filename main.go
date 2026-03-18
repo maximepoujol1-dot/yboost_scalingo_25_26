@@ -20,13 +20,6 @@ func main() {
 	
 	db.Preload("Vikings").Find(&event)
 
-	for _, e := range event {
-		fmt.Println("Event:", e.Name_event)
-		for _, v := range e.Vikings {
-			fmt.Println(" - Viking:", v.Name)
-		}
-	}
-
 	staticDir := "./front"
 	templateDir = "./front/page"
 	if exePath, err := os.Executable(); err == nil {

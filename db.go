@@ -26,6 +26,10 @@ func initDB() {
 		log.Fatalf("Impossible de se connecter à la base de données : %v", err)
 	}
 
+	if err := db.SetupJoinTable(&Event{}, "Vikings", &EventViking{}); err != nil {
+		log.Fatalf("Impossible de configurer la table de jointure EventViking : %v", err)
+	}
+
 
 	// Récupère la connexion SQL sous-jacente
     sqlDB, err := db.DB()

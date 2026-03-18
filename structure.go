@@ -18,7 +18,7 @@ func (Viking) TableName() string {
 type Event struct{	
 	Event_id   	uint    `gorm:"primaryKey;column:event_id"`
 	Name_event 	string 	`gorm:"column:name_event"`
-    Vikings     []Viking  `gorm:"many2many:EventViking;joinForeignKey:EventID;JoinReferences:VikingID"`
+    Vikings     []Viking  `gorm:"many2many:EventViking;foreignKey:Event_id;joinForeignKey:Event_id;references:Viking_id;joinReferences:Viking_id"`
 }
 
 func (Event) TableName() string {
@@ -27,11 +27,11 @@ func (Event) TableName() string {
 
 type EventViking struct {
 
-    Event_id uint `gorm:"column:Event_id"` 
+    Event_id uint `gorm:"column:event_id"`
     Event Event `gorm:"foreignKey:Event_id;references:Event_id"` // relation
 
-    Viking_ID uint   `gorm:"column:viking_id"` 
-    Viking *Viking `gorm:"foreignKey:Viking_ID;references:Viking_id"` // relation
+    Viking_id uint   `gorm:"column:viking_id"`
+    Viking *Viking `gorm:"foreignKey:Viking_id;references:Viking_id"` // relation
     
 }
 

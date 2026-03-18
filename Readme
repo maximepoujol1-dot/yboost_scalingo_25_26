@@ -1,1 +1,47 @@
-hello world
+# YBoost - Viking Tracker
+
+## Raison d'etre du projet
+Viking Tracker est une application web qui permet de decouvrir des vikings, leurs pays d'origine et des evenements associes.
+
+Objectifs principaux :
+- proposer une interface simple pour consulter des donnees historiques;
+- illustrer l'utilisation de Go pour un serveur web dynamique;
+- connecter une application backend a une base PostgreSQL avec GORM;
+- servir des pages HTML/CSS statiques et dynamiques.
+
+## Technologies utilisees
+- Langage backend : Go
+- Serveur HTTP : package standard `net/http`
+- Templates : `html/template`
+- ORM : GORM (`gorm.io/gorm`)
+- Driver base de donnees : `gorm.io/driver/postgres`
+- Base de donnees : PostgreSQL (ex. Supabase/Render Postgres)
+- Frontend : HTML + CSS (dossier `front/page`)
+- API/tiles externes : OpenStreetMap (affichage cartographique via Leaflet)
+
+## Structure du projet
+- `main.go` : point d'entree, configuration des routes et demarrage du serveur.
+- `db.go` : connexion a PostgreSQL et initialisation GORM.
+- `structure.go` : modeles de donnees (`Viking`, `Country`, `Event`, `EventViking`).
+- `Handler.go` : handlers HTTP pour les pages.
+- `front/` : ressources statiques (HTML/CSS/images).
+
+## Lancement du projet
+1. Telecharger (ou cloner) le projet.
+2. Installer les packages Go necessaires :
+
+```bash
+go mod tidy
+```
+
+3. Deployer le projet sur Render (Web Service Go).
+4. Renseigner les variables d'environnement pour l'acces a la base :
+- `DATABASE_URL` (obligatoire)
+- `PORT` (laisser celle fournie par Render)
+
+5. Lancer l'application :
+
+```bash
+go run .
+```
+

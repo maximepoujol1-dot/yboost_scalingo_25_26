@@ -21,10 +21,10 @@ func initDB() {
 	}
 
 	var err error
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
-	if err != nil {
-		log.Fatalf("Impossible de se connecter à la base de données : %v", err)
-	}
+	db, err = gorm.Open(postgres.New(postgres.Config{
+    DSN:                  dsn,
+    PreferSimpleProtocol: true, 
+}), &gorm.Config{})
 
 	if err := db.SetupJoinTable(&Event{}, "Vikings", &EventViking{}); err != nil {
 		log.Fatalf("Impossible de configurer la table de jointure EventViking : %v", err)

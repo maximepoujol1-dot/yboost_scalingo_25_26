@@ -24,6 +24,22 @@ func (Event) TableName() string {
     return "Event" // le nom exact de ta table Supabase
 }
 
+type EventViking struct {
+
+    Event_id uint `gorm:"column:Event_id"` 
+    Event Event `gorm:"foreignKey:Event_id;references:Event_id"` // relation
+
+    Viking_ID uint   `gorm:"column:viking_id"` 
+    Viking *Viking `gorm:"foreignKey:Viking_ID;references:Viking_id"` // relation
+    
+}
+
+func (EventViking) TableName() string {
+    return "EventViking" 
+}
+
+
+
 type Country struct{
 
 	Country_id   uint     `gorm:"primaryKey;column:country_id"`

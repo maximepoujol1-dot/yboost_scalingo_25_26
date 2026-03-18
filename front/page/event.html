@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Viking Tracker - Recherche</title>
+  <link rel="stylesheet" href="/static/page/index.css?v=1">
+  <link rel="stylesheet" href="/static/page/pays.css?v=1">
+
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="navbar">
+        <a href="/" class="logo">
+          <img src="/static/images/symbole.jpg" alt="Logo Viking Tracker" class="logo1">
+        </a>
+        <h1 class="site-title">Viking Tracker</h1>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/pays">pays Scandinaves</a></li>
+          <li><a href="/aboutus">A propos</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <div class="container">
+    <h2 class="page-title">Evenement</h2>
+
+    <section class="pays-grid">
+    {{range .}}
+    <article class="pays-card wood-card">
+      <div class="pays-card-inner">
+        <h2 class="pays-title">{{.Event_name}}</h2>
+        <div class="pays-body">
+          
+        </div>
+      </div>
+    </article>
+    {{else}}
+    <article class="wood-card">
+      <div class="wood-card-inner">
+        <p>Aucun pays recupere depuis l'API pour le moment.</p>
+      </div>
+    </article>
+    {{end}}
+    </section>
+  </div>
+
+ 
+</body>
+</html>
+
+

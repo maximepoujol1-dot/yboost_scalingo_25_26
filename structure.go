@@ -18,6 +18,7 @@ func (Viking) TableName() string {
 type Event struct{	
 	Event_id   	uint    `gorm:"primaryKey;column:event_id"`
 	Name_event 	string 	`gorm:"column:name_event"`
+    Vikings     []Viking  `gorm:"many2many:EventViking;joinForeignKey:EventID;JoinReferences:VikingID"`
 }
 
 func (Event) TableName() string {

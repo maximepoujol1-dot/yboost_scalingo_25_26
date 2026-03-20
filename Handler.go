@@ -86,8 +86,6 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 }
 
 func homeHandler5(w http.ResponseWriter, r *http.Request) {
-
-    event = nil 
     
     err := db.Preload("Vikings").Find(&event).Error
     if err != nil {

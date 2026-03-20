@@ -100,6 +100,6 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-	tpl.Execute(w, pays)
+	tpl.Execute(w, event)
 }
 

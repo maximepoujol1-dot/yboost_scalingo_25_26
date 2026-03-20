@@ -16,9 +16,9 @@ type Viking struct {
 func (Viking) TableName() string { return "Viking" }
 
 type Event struct {
-	Event_id   uint     `gorm:"primaryKey;column:event_id"`
-	Name_event string   `gorm:"column:name_event"`
-	Vikings    []Viking `gorm:"many2many:EventViking;foreignKey:Event_id;joinForeignKey:event_id;References:Viking_id;joinReferences:viking_id"`
+    Event_id   uint     `gorm:"primaryKey;column:event_id"`
+    Name_event string   `gorm:"column:name_event"`
+    Vikings    []Viking `gorm:"many2many:EventViking;foreignKey:Event_id;joinForeignKey:event_id;References:Viking_id;joinReferences:viking_id"`
 }
 
 func (Event) TableName() string { return "Event" }

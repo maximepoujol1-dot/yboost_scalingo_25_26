@@ -91,15 +91,18 @@ func homeHandler4(w http.ResponseWriter, r *http.Request) {
 
 func homeHandler5(w http.ResponseWriter, r *http.Request) {
 
-	if len(event) == 0 {
-		db.Preload("Vikings").Find(&event)
-	}
+    event = nil 
+    
+    err := db.Preload("Vikings").Find(&event).Error
+    if err != nil {
+        http.Error(w, "Erreur lors de la récupération des données", 500)
+        return
+    }
 
-	tpl, err := template.ParseFiles(filepath.Join(templateDir, "event.html"))
-	if err != nil {
-		http.Error(w, err.Error(), 500)
-		return
-	}
-	tpl.Execute(w, event)
+    tpl, err := template.ParseFiles(filepath.Join(templateDir, "event.html"))
+    if err != nil {
+        http.Error(w, err.Error(), 500)
+        return
+    }
+    tpl.Execute(w, event)
 }
-

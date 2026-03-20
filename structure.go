@@ -1,3 +1,4 @@
+
 package main
 
 type Viking struct {
@@ -29,13 +30,21 @@ type EventViking struct {
 
 func (EventViking) TableName() string { return "EventViking" }
 
-type Country struct {
+
+type Country struct{
+
 	Country_id   uint     `gorm:"primaryKey;column:country_id"`
-	Country_name string   `gorm:"column:country_name"`
+    Country_name string   `gorm:"column:country_name"`
 	Flag_country string   `gorm:"column:flag_country"`
-	Population   string   `gorm:"column:population"`
-	Politique    string   `gorm:"column:politique"`
-	Vikings      []Viking `gorm:"foreignKey:CountryID;references:Country_id"`
+    Population string       `gorm:"column:population"`
+    Politique string `gorm:"column:politique"`
+
+    VikingID uint   `gorm:"column:viking_id"` 
+    Viking *Viking `gorm:"foreignKey:VikingID;references:Viking_id"` // relation
+
 }
 
-func (Country) TableName() string { return "Country" }
+func (Country) TableName() string {
+    return "Country" // le nom exact de ta table Supabase
+}
+

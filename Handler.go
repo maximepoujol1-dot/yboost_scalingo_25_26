@@ -9,10 +9,6 @@ import (
 
 )
 
-var vikings []Viking
-var pays []Country
-var event []Event
-
 // redirect to the good page
 func redirectHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
@@ -105,4 +101,18 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
         return
     }
     tpl.Execute(w, event)
+}
+
+func homeHandler6(w http.ResponseWriter, r *http.Request) {
+
+	if len(pays) == 0 {
+		db.Preload("Viking").Find(&pays)
+	}
+
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "pays.html"))
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+	tpl.Execute(w, pays)
 }

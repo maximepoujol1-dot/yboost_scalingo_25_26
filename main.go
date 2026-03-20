@@ -14,11 +14,7 @@ func main() {
 
 	initDB()
 
-	db.Preload("Viking").Find(&pays)
-	db.Preload("Country").Find(&vikings)
-
-	
-	db.Preload("Vikings").Find(&event)
+	loadTable()
 
 	staticDir := "./front"
 	templateDir = "./front/page"
@@ -42,9 +38,6 @@ func main() {
 
 
 	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8081" 
-	}
 
 	fmt.Println("Server started at :" + port)
 

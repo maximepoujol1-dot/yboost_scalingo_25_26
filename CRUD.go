@@ -43,7 +43,7 @@ func createTable(name string, image string, burth string, dead string, periode s
 	
 }
 
-func updateTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
+func updateTable(id string, name string, image string, burth string, dead string, periode string, country string, mdp string){
 	
     if mdp != os.Getenv("Mdp") {
         fmt.Println("⚠️ Erreur : Mot de passe incorrect ou variable d'env non définie")
@@ -64,20 +64,23 @@ func updateTable(name string, image string, burth string, dead string, periode s
 
 	burthInt, _ := strconv.Atoi(burth)
     deathInt, _ := strconv.Atoi(dead)
+	vikingID, _ := strconv.Atoi(id)
 	
-	new := Viking{Name: name,
-				Image: image, 
-				Burthyear: burthInt, 
-				Deadyear: deathInt, 
-				Periode: periode, 
-				CountryID: id_country}
-					
-	db.Model(&Viking{}).Where("name = ?", name).Update(&new)
+	updateData := map[string]interface{}{
+		"name":       name,
+		"image":      image,
+		"burthyear":  burthInt,
+		"deadyear":   deathInt,
+		"periode":    periode,
+		"country_id": id_country,
+	}
+
+	db.Model(&Viking{}).Where("viking_id = ?", vikingID).Updates(updateData)
 	
 }
 
 func destroyTable(name string){
-	db.Where("name = ?", name).Delete(&viking)
+	db.Where("name = ?", name).Delete(&Viking{})
 }
 
 func loadTable(){

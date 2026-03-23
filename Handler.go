@@ -125,7 +125,7 @@ func homeHandler6(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if r.Method == http.MethodPost {
-		updateTable(r.FormValue("name2"))
+		destroyTable(r.FormValue("name2"))
 	}
 
 

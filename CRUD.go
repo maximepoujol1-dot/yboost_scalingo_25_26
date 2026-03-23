@@ -16,11 +16,8 @@ func createTable(name string, image string, burth string, dead string, periode s
     if mdp != os.Getenv("mdp") {
         fmt.Println("⚠️ Erreur : Mot de passe incorrect ou variable d'env non définie")
         return
-		
-    }if mdp != os.Getenv("mdp") {
-        fmt.Println("Erreur : Mot de passe incorrect")
-        return
-	}
+
+    } 
 	
 	var id_country uint = 0
 	if country == "Danemark" || country == "1"{

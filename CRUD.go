@@ -12,10 +12,10 @@ var event []Event
 
 func createTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
 	fmt.Printf("Données reçues : %s, %s, %s\n", name, country, mdp)
-
+	test := os.Getenv("mdp")
     if mdp != os.Getenv("mdp") {
         fmt.Println("⚠️ Erreur : Mot de passe incorrect ou variable d'env non définie")
-		fmt.Println(os.Getenv("mdp"))
+		fmt.Println(test)
 		fmt.Println(mdp)
         return
 

@@ -1,15 +1,14 @@
 package main
 
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
 var vikings []Viking
 var pays []Country
 var event []Event
-
-import (
-	"log"
-	"os"
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"	
-)
 
 func createTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
 	if mdp != os.Getenv("mdp") {
@@ -28,7 +27,7 @@ func createTable(name string, image string, burth string, dead string, periode s
 		id_country =4	
 	} 
 
-	birthInt, _ := strconv.Atoi(burth)
+	burthInt, _ := strconv.Atoi(burth)
     deathInt, _ := strconv.Atoi(dead)
 	
 	new := Viking{Name: name,
@@ -42,13 +41,13 @@ func createTable(name string, image string, burth string, dead string, periode s
 	
 }
 
-func destroyTable(name string){
-	db.Where("name = ?", name).Delete(&viking)
-}
+//func destroyTable(name string){
+//	db.Where("name = ?", name).Delete(&viking)
+//}
 
-func updateTable(name string){
-	db.Model(&Viking{}).Where("name = ?", name).Update()
-}
+//func updateTable(name string){
+//	db.Model(&Viking{}).Where("name = ?", name).Update()
+//}
 
 func loadTable(){
 	db.Preload("Viking").Find(&pays)

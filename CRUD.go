@@ -33,7 +33,7 @@ func createTable(name string, image string, burth string, dead string, periode s
 	new := Viking{Name: name,
 				Image: image, 
 				Burthyear: burthInt, 
-				Deadyear: deadInt, 
+				Deadyear: deathInt, 
 				Periode: periode, 
 				CountryID: id_country}
 					

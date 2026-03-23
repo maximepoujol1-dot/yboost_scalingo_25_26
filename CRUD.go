@@ -14,9 +14,9 @@ func createTable(name string, image string, burth string, dead string, periode s
 	fmt.Printf("Données reçues : %s, %s, %s\n", name, country, mdp)
 	fmt.Printf("--- VERIFICATION SECURITE ---\n")
     fmt.Printf("Formulaire : Type=%T | Valeur=%#v\n", mdp, mdp)
-	fmt.Printf("Système (ENV): Type=%T | Valeur=%#v\n", os.Getenv("mdp"), os.Getenv("mdp"))
+	fmt.Printf("Système (ENV): Type=%T | Valeur=%#v\n", os.Getenv("Mdp"), os.Getenv("Mdp"))
     fmt.Printf("-----------------------------\n")
-    if mdp != os.Getenv("mdp") {
+    if mdp != os.Getenv("Mdp") {
         fmt.Println("⚠️ Erreur : Mot de passe incorrect ou variable d'env non définie")
         return
 

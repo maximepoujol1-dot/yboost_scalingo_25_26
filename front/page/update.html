@@ -64,25 +64,25 @@
 					<h3>Modification</h3>
 					<form action="/viking/update" method="post" class="crud-form">
 						<label for="update-id">Viking ID a modifier</label>
-						<input id="update-id" name="viking_id" type="number" placeholder="3" required>
+						<input id="update-id" name="viking_id1" type="number" placeholder="3" required>
 
 						<label for="update-name">Nouveau nom</label>
-						<input id="update-name" name="name" type="text" placeholder="Bjorn Ironside">
+						<input id="update-name" name="name1" type="text" placeholder="Bjorn Ironside">
 
 						<label for="update-image">Nouvelle image (URL)</label>
-						<input id="update-image" name="image" type="url" placeholder="https://...">
+						<input id="update-image" name="image1" type="url" placeholder="https://...">
 
 						<label for="update-birth">Nouvelle annee de naissance</label>
-						<input id="update-birth" name="burthyear" type="number" placeholder="780">
+						<input id="update-birth" name="burthyear1" type="number" placeholder="780">
 
 						<label for="update-death">Nouvelle annee de mort</label>
-						<input id="update-death" name="deadyear" type="number" placeholder="860">
+						<input id="update-death" name="deadyear1" type="number" placeholder="860">
 
 						<label for="update-period">Nouvelle periode</label>
-						<input id="update-period" name="periode" type="text" placeholder="Age viking tardif">
+						<input id="update-period" name="periode1" type="text" placeholder="Age viking tardif">
 
-						<label for="update-country-id">Nouveau Country </label>
-						<input id="update-country-id" name="country_id" type="number" placeholder="2">
+						<label for="update-country-id">Nouveau pays </label>
+						<input id="update-country-id" name="country_id1" type="text" placeholder="2">
 
 						<button type="submit" class="btn btn-update">Modifier le viking</button>
 					</form>
@@ -92,7 +92,7 @@
 					<h3>Suppression</h3>
 					<form action="/viking/delete" method="post" class="crud-form">
 						<label for="delete">Viking a supprimer</label>
-						<input id="delete-id" name="name" type="text" placeholder="Bjorn Ironside" required>
+						<input id="delete-id" name="name2" type="text" placeholder="Bjorn Ironside" required>
 
 						<p class="danger-note">Cette action est irreversible.</p>
 						<button type="submit" class="btn btn-delete">Supprimer le viking</button>

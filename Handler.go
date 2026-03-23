@@ -103,14 +103,15 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 
 func homeHandler6(w http.ResponseWriter, r *http.Request) {
 
-	createTable(r.FormValue("name"),
-				r.FormValue("image"),
-				r.FormValue("burthyear"),
-				r.FormValue("deadyear"),
-				r.FormValue("periode"),
-				r.FormValue("country_id"),
-				r.FormValue("mdp"))
-
+	if r.Method == http.MethodPost {
+		createTable(r.FormValue("name"),
+					r.FormValue("image"),
+					r.FormValue("burthyear"),
+					r.FormValue("deadyear"),
+					r.FormValue("periode"),
+					r.FormValue("country_id"),
+					r.FormValue("mdp"))
+	}
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "update.html"))
 	if err != nil {

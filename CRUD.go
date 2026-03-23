@@ -4,16 +4,50 @@ var vikings []Viking
 var pays []Country
 var event []Event
 
-func createTable(){
+import (
+	"log"
+	"os"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"	
+)
+
+func createTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
+	if mdp != os.Getenv("mdp") {
+        fmt.Println("Erreur : Mot de passe incorrect")
+        return
+	}
+	
+	var id_country uint = 0
+	if country == "Danemark" || country == "1"{
+		id_country =1
+	} else if country == "Norvège" || country == "2" {
+		id_country =2	
+	} else if country == "Suède" || country == "3"{
+		id_country =3	
+	} else if country == "Islande" || country == "4"{
+		id_country =4	
+	} 
+
+	birthInt, _ := strconv.Atoi(burth)
+    deathInt, _ := strconv.Atoi(dead)
+	
+	new := Viking{Name: name,
+				Image: image, 
+				Burthyear: burthInt, 
+				Deadyear: deadInt, 
+				Periode: periode, 
+				CountryID: id_country}
+					
+	db.Create(&new)
 	
 }
 
-func destroyTable(){
-	
+func destroyTable(name string){
+	db.Where("name = ?", name).Delete(&viking)
 }
 
-func updateTable(){
-	
+func updateTable(name string){
+	db.Model(&Viking{}).Where("name = ?", name).Update()
 }
 
 func loadTable(){

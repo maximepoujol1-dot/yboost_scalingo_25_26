@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Viking Tracker - Gestion Viking</title>
+	<link rel="stylesheet" href="/static/page/index.css?v=1">
+	<link rel="stylesheet" href="/static/page/update.css?v=1">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div class="navbar">
+				<a href="/" class="logo">
+					<img src="/static/images/symbole.jpg" alt="Logo Viking Tracker" class="logo1">
+				</a>
+				<h1 class="site-title">Viking Tracker</h1>
+				<ul>
+					<li><a href="/">Accueil</a></li>
+					<li><a href="/pays">Pays Scandinaves</a></li>
+					<li><a href="/event">Evenements</a></li>
+					<li><a href="/aboutus">A propos</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<main>
+		<div class="container admin-wrap">
+			<h2 class="page-title">Gestion de la table Viking</h2>
+			<p class="page-subtitle">Page dediee aux operations de creation, modification et suppression des Vikings.</p>
+
+			<section class="crud-grid">
+				<article class="crud-card create-card">
+					<h3>Creation</h3>
+					<form action="/viking/create" method="post" class="crud-form">
+						<label for="create-name">Nom</label>
+						<input id="create-name" name="name" type="text" placeholder="Ragnar Lodbrok" required>
+
+						<label for="create-image">Image (URL)</label>
+						<input id="create-image" name="image" type="url" placeholder="https://...">
+
+						<label for="create-birth">Annee de naissance</label>
+						<input id="create-birth" name="burthyear" type="number" placeholder="760">
+
+						<label for="create-death">Annee de mort</label>
+						<input id="create-death" name="deadyear" type="number" placeholder="845">
+
+						<label for="create-period">Periode</label>
+						<input id="create-period" name="periode" type="text" placeholder="Age viking" required>
+
+						<label for="create-country-id">Pays</label>
+						<input id="create-country-id" name="country_id" type="number" placeholder="Danemark" required>
+
+						<label for="create-mdp">mdp</label>
+						<input id="create-mdp" name="mdp" type="text" placeholder="..." required>
+
+						<button type="submit" class="btn btn-create">Creer le viking</button>
+					</form>
+				</article>
+
+				<article class="crud-card update-card">
+					<h3>Modification</h3>
+					<form action="/viking/update" method="post" class="crud-form">
+						<label for="update-id">Viking ID a modifier</label>
+						<input id="update-id" name="viking_id" type="number" placeholder="3" required>
+
+						<label for="update-name">Nouveau nom</label>
+						<input id="update-name" name="name" type="text" placeholder="Bjorn Ironside">
+
+						<label for="update-image">Nouvelle image (URL)</label>
+						<input id="update-image" name="image" type="url" placeholder="https://...">
+
+						<label for="update-birth">Nouvelle annee de naissance</label>
+						<input id="update-birth" name="burthyear" type="number" placeholder="780">
+
+						<label for="update-death">Nouvelle annee de mort</label>
+						<input id="update-death" name="deadyear" type="number" placeholder="860">
+
+						<label for="update-period">Nouvelle periode</label>
+						<input id="update-period" name="periode" type="text" placeholder="Age viking tardif">
+
+						<label for="update-country-id">Nouveau Country </label>
+						<input id="update-country-id" name="country_id" type="number" placeholder="2">
+
+						<button type="submit" class="btn btn-update">Modifier le viking</button>
+					</form>
+				</article>
+
+				<article class="crud-card delete-card">
+					<h3>Suppression</h3>
+					<form action="/viking/delete" method="post" class="crud-form">
+						<label for="delete">Viking a supprimer</label>
+						<input id="delete-id" name="name" type="text" placeholder="Bjorn Ironside" required>
+
+						<p class="danger-note">Cette action est irreversible.</p>
+						<button type="submit" class="btn btn-delete">Supprimer le viking</button>
+					</form>
+				</article>
+			</section>
+		</div>
+	</main>
+</body>
+</html>

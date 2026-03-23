@@ -1,0 +1,142 @@
+:root {
+	--paper: #f5ecd8;
+	--ink: #2e2318;
+	--line: #b08a5a;
+	--accent: #7a4b1f;
+	--create: #3b7f37;
+	--update: #c28a2e;
+	--delete: #b53a2f;
+	--card-shadow: 0 10px 24px rgba(46, 35, 24, 0.2);
+}
+
+body {
+	background:
+		radial-gradient(circle at 15% 10%, rgba(176, 138, 90, 0.28), transparent 42%),
+		radial-gradient(circle at 90% 90%, rgba(122, 75, 31, 0.18), transparent 35%),
+		linear-gradient(145deg, #eee1c9 0%, #d8c09a 100%);
+}
+
+.admin-wrap {
+	padding: 2rem 0 3rem;
+}
+
+.page-subtitle {
+	text-align: center;
+	color: var(--ink);
+	margin: 0 auto 1.8rem;
+	max-width: 780px;
+	font-weight: 600;
+	letter-spacing: 0.2px;
+}
+
+.crud-grid {
+	display: grid;
+	gap: 1.2rem;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.crud-card {
+	background: linear-gradient(180deg, rgba(245, 236, 216, 0.96), rgba(236, 221, 190, 0.96));
+	border: 2px solid var(--line);
+	border-radius: 14px;
+	padding: 1.1rem;
+	box-shadow: var(--card-shadow);
+}
+
+.crud-card h3 {
+	margin-top: 0;
+	margin-bottom: 0.9rem;
+	color: var(--accent);
+	font-size: 1.2rem;
+}
+
+.crud-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.55rem;
+}
+
+.crud-form label {
+	color: var(--ink);
+	font-weight: 700;
+	font-size: 0.93rem;
+}
+
+.crud-form input {
+	border: 1.5px solid #c5a274;
+	border-radius: 8px;
+	padding: 0.62rem 0.72rem;
+	font-size: 0.95rem;
+	color: var(--ink);
+	background: #fffdf8;
+	outline: none;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crud-form input:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(122, 75, 31, 0.15);
+}
+
+.btn {
+	margin-top: 0.5rem;
+	border: 0;
+	border-radius: 9px;
+	padding: 0.75rem 0.95rem;
+	font-weight: 800;
+	color: #fff;
+	cursor: pointer;
+	transition: transform 0.14s ease, filter 0.14s ease;
+}
+
+.btn:hover {
+	transform: translateY(-1px);
+	filter: brightness(1.05);
+}
+
+.btn:active {
+	transform: translateY(0);
+}
+
+.btn-create {
+	background: linear-gradient(135deg, #2f6b2c, var(--create));
+}
+
+.btn-update {
+	background: linear-gradient(135deg, #a16a1f, var(--update));
+}
+
+.btn-delete {
+	background: linear-gradient(135deg, #8f291f, var(--delete));
+}
+
+.danger-note {
+	margin: 0.25rem 0 0.1rem;
+	color: #7d1f18;
+	font-weight: 700;
+	font-size: 0.9rem;
+}
+
+@media (max-width: 1000px) {
+	.crud-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.delete-card {
+		grid-column: span 2;
+	}
+}
+
+@media (max-width: 700px) {
+	.crud-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.delete-card {
+		grid-column: auto;
+	}
+
+	.crud-card {
+		padding: 1rem;
+	}
+}

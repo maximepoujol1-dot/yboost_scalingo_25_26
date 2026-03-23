@@ -103,14 +103,19 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 
 func homeHandler6(w http.ResponseWriter, r *http.Request) {
 
-	if len(pays) == 0 {
-		db.Preload("Viking").Find(&pays)
-	}
+	createTable(r.FormValue("name"),
+				r.FormValue("image"),
+				r.FormValue("burthyear"),
+				r.FormValue("deadyear"),
+				r.FormValue("periode"),
+				r.FormValue("country_id"),
+				r.FormValue("mdp"))
 
-	tpl, err := template.ParseFiles(filepath.Join(templateDir, "pays.html"))
+
+	tpl, err := template.ParseFiles(filepath.Join(templateDir, "update.html"))
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-	tpl.Execute(w, pays)
+	tpl.Execute(w, nil)
 }

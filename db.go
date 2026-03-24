@@ -12,6 +12,16 @@ import (
 
 var db *gorm.DB
 
+func realignVikingSequence() error {
+	query := `SELECT setval(
+		pg_get_serial_sequence('"Viking"', 'viking_id'),
+		COALESCE((SELECT MAX(viking_id) FROM "Viking"), 0) + 1,
+		false
+	)`
+
+	return db.Exec(query).Error
+}
+
 func initDB() {
 
 	
@@ -21,7 +31,10 @@ func initDB() {
 	}
 
 	var err error
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{PrepareStmt: false,})
+	db, err = gorm.Open(postgres.New(postgres.Config{
+		DSN:                  dsn,
+		PreferSimpleProtocol: true,
+	}), &gorm.Config{PrepareStmt: false})
 	
 	if err != nil {
 		log.Fatalf("Impossible de se connecter à la base de données : %v", err)

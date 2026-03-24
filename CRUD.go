@@ -10,7 +10,7 @@ var vikings []Viking
 var pays []Country
 var event []Event
 
-func createTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
+func addteTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
 	
     if mdp != os.Getenv("Mdp") {
         fmt.Println("⚠️ Erreur : Mot de passe incorrect ou variable d'env non définie")
@@ -39,8 +39,24 @@ func createTable(name string, image string, burth string, dead string, periode s
 				Periode: periode, 
 				CountryID: id_country}
 					
-	db.Create(&new)
-	
+	if err := db.Where(Viking{Name: name}).FirstOrCreate(&new).Error; err != nil {
+		if strings.Contains(err.Error(), "viking_pkey") {
+			if seqErr := realignVikingSequence(); seqErr != nil {
+				fmt.Printf("⚠️ Erreur insertion et realignement sequence impossible: %v | %v\n", err, seqErr)
+				return
+			}
+
+			if retryErr := db.Where(Viking{Name: name}).FirstOrCreate(&new).Error; retryErr != nil {
+				fmt.Printf("⚠️ Erreur insertion apres realignement sequence: %v\n", retryErr)
+				return
+			}
+
+			fmt.Println("✓ Insertion reussie apres realignement de sequence")
+			return
+		}
+
+		fmt.Printf("⚠️ Erreur insertion viking: %v\n", err)
+	}
 }
 
 func updateTable(id string, name string, image string, burth string, dead string, periode string, country string, mdp string){
@@ -75,7 +91,7 @@ func updateTable(id string, name string, image string, burth string, dead string
 		"country_id": id_country,
 	}
 
-	db.Model(&Viking{}).Where("viking_id = ?", vikingID).Updates(updateData)
+	if db, err := db.Model(&Viking{}).Where("viking_id = ?", vikingID).Updates(updateData)
 	
 }
 
@@ -88,3 +104,4 @@ func loadTable(){
 	db.Preload("Country").Find(&vikings)
 	db.Preload("Vikings").Find(&event)
 }
+

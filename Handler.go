@@ -104,7 +104,7 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 func homeHandler6(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
-		createTable(r.FormValue("name"),
+		addTable(r.FormValue("name"),
 					r.FormValue("image"),
 					r.FormValue("burthyear"),
 					r.FormValue("deadyear"),

@@ -1,17 +1,12 @@
-/* ======================================= */
-/* index.css - STYLES GLOBAUX */
-/* ======================================= */
-
 :root {
-    --wood-dark: #4b2f1a;
-    --wood-mid: #6f4526;
-    --wood-light: #c89f72;
-    --wood-light-2: #b6895e;
-    --paper: rgba(255, 250, 240, 0.93);
-    --paper-strong: rgba(255, 250, 240, 0.97);
-    --line: #d6b895;
-    --text: #2d2218;
-    --shadow: rgba(0, 0, 0, 0.35);
+    --paper: #f5ecd8;
+    --paper-strong: rgba(245, 236, 216, 0.96);
+    --ink: #2e2318;
+    --line: #b08a5a;
+    --accent: #7a4b1f;
+    --accent-deep: #5e3a18;
+    --btn: #3a2411;
+    --card-shadow: 0 12px 28px rgba(46, 35, 24, 0.22);
 }
 
 * {
@@ -22,17 +17,25 @@
 
 body {
     font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-    color: var(--text);
+    color: var(--ink);
     line-height: 1.6;
     min-height: 100vh;
     background:
-        radial-gradient(circle at 15% 20%, rgba(230, 198, 158, 0.32), transparent 35%),
-        radial-gradient(circle at 85% 10%, rgba(152, 103, 66, 0.25), transparent 33%),
-        linear-gradient(145deg, #e5d2bc 0%, #d3b08a 55%, #ba8e63 100%);
+        radial-gradient(circle at 10% 12%, rgba(176, 138, 90, 0.35), transparent 40%),
+        radial-gradient(circle at 88% 85%, rgba(122, 75, 31, 0.2), transparent 36%),
+        linear-gradient(145deg, #eee1c9 0%, #d8c09a 100%);
+}
+
+body.home-page {
+    background:
+        linear-gradient(180deg, rgba(34, 24, 16, 0.5), rgba(34, 24, 16, 0.35)),
+        radial-gradient(circle at 12% 18%, rgba(176, 138, 90, 0.3), transparent 42%),
+        radial-gradient(circle at 85% 80%, rgba(122, 75, 31, 0.2), transparent 36%),
+        url("/static/images/fond-island.jpg") center / cover fixed no-repeat;
 }
 
 .container {
-    width: min(1120px, 92%);
+    width: min(1160px, 92%);
     margin: 0 auto;
 }
 
@@ -40,9 +43,10 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
-    background: linear-gradient(180deg, #5a371e 0%, #3d2412 100%);
-    border-bottom: 3px solid var(--line);
+    border-bottom: 2px solid #c9a87a;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(180deg, rgba(76, 47, 22, 0.96), rgba(56, 34, 16, 0.96));
+    backdrop-filter: blur(4px);
 }
 
 .navbar {
@@ -59,11 +63,12 @@ header {
 }
 
 .logo1 {
-    width: 56px;
-    height: 56px;
+    width: 58px;
+    height: 58px;
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid #e7c69f;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .site-title {
@@ -89,69 +94,29 @@ header {
 .navbar ul a {
     display: inline-block;
     padding: 10px 14px;
-    border-radius: 8px;
-    background: rgba(255, 223, 188, 0.08);
+    border-radius: 9px;
     border: 1px solid rgba(255, 215, 170, 0.25);
-    transition: transform 0.2s ease, background 0.2s ease;
+    background: rgba(255, 223, 188, 0.08);
+    transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
 .navbar ul a:hover {
-    background: rgba(255, 223, 188, 0.2);
     transform: translateY(-1px);
+    background: rgba(255, 223, 188, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 main {
-    padding: 30px 0 40px;
+    padding: 34px 0 46px;
 }
 
 .page-title {
     text-align: center;
-    margin-bottom: 26px;
-    color: var(--wood-dark);
-    font-size: 2.25rem;
-    border-bottom: 2px solid var(--line);
-    padding-bottom: 12px;
-}
-
-.wood-card {
-    background:
-        repeating-linear-gradient(
-            90deg,
-            var(--wood-light) 0px,
-            var(--wood-light) 6px,
-            var(--wood-light-2) 6px,
-            var(--wood-light-2) 12px
-        );
-    border-radius: 12px;
-    box-shadow:
-        0 6px 15px var(--shadow),
-        inset 0 0 0 3px rgba(80, 50, 30, 0.4);
-    overflow: hidden;
-}
-
-.wood-card-inner {
-    background: var(--paper);
-    margin: 16px;
-    border-radius: 8px;
-    padding: 16px;
-}
-
-.btn {
-    display: inline-block;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px 14px;
-    border-radius: 8px;
-    font-weight: 700;
-    background: var(--wood-mid);
-    color: #fff1df;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-    opacity: 0.92;
+    margin-bottom: 28px;
+    color: #f6ecdf;
+    font-size: clamp(1.9rem, 4vw, 2.5rem);
+    letter-spacing: 0.4px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.38);
 }
 
 .grid {
@@ -160,24 +125,66 @@ main {
     gap: 20px;
 }
 
-/* Taille max des cartes viking */
 .grid .wood-card {
-    max-width: 280px;
     width: 100%;
+    max-width: 300px;
     margin: 0 auto;
+    border: 2px solid var(--line);
+    border-radius: 14px;
+    background: linear-gradient(180deg, var(--paper-strong), rgba(236, 221, 190, 0.95));
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Taille fixe des images viking */
+.grid .wood-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px rgba(46, 35, 24, 0.28);
+}
+
+.wood-card-inner {
+    padding: 16px;
+}
+
 .grid .wood-card-inner img {
     display: block;
     width: 100%;
-    max-width: 200px;
-    height: 150px;
-    object-fit: contain;
-    background: rgba(255, 250, 240, 0.75);
-    border-radius: 6px;
-    margin: 0 auto 12px;
-    border: 2px solid #c89f72;
+    max-width: 210px;
+    height: 160px;
+    object-fit: cover;
+    background: #fffdf8;
+    border-radius: 9px;
+    margin: 0 auto 14px;
+    border: 1.5px solid #c5a274;
+}
+
+.wood-card-inner h3 {
+    color: var(--accent-deep);
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.wood-card-inner p {
+    margin: 0.15rem 0;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 0.65rem;
+    border: 0;
+    border-radius: 9px;
+    padding: 0.62rem 0.92rem;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--btn));
+    transition: transform 0.14s ease, filter 0.14s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
 }
 
 @media (max-width: 900px) {
@@ -190,11 +197,15 @@ main {
         width: 100%;
         text-align: center;
     }
+
+    body.home-page {
+        background-attachment: scroll;
+    }
 }
 
 @media (max-width: 768px) {
-    .page-title {
-        font-size: 1.95rem;
+    main {
+        padding-top: 24px;
     }
 
     .navbar ul {

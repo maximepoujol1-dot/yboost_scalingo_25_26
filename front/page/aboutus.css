@@ -1,72 +1,49 @@
-/* ======================================= */
-/* aboutus.css - STYLES SPECIFIQUES */
-/* ======================================= */
-
-/* Conteneur plus étroit pour le contenu texte */
-main .container {
-    max-width: 900px;
-}
-
-/* Titre principal de la page */
-main h1 {
-    color: #4b2f1a;
-    font-size: 2.4em;
-    margin-bottom: 24px;
-    text-align: center;
-    border-bottom: 2px solid #d6b895;
-    padding-bottom: 12px;
-}
-
-/* Sections avec style carte bois (comme l'index) */
-section {
+.about-page {
     background:
-        repeating-linear-gradient(
-            90deg,
-            #c89f72 0px,
-            #c89f72 6px,
-            #b6895e 6px,
-            #b6895e 12px
-        );
-    padding: 24px;
-    margin-bottom: 24px;
-    border-radius: 12px;
-    box-shadow:
-        0 6px 15px rgba(0,0,0,0.35),
-        inset 0 0 0 3px rgba(80,50,30,0.4);
-    overflow: hidden;
+        radial-gradient(circle at 10% 16%, rgba(176, 138, 90, 0.24), transparent 42%),
+        radial-gradient(circle at 88% 82%, rgba(122, 75, 31, 0.16), transparent 35%),
+        linear-gradient(145deg, #efe4cf 0%, #dcc6a2 100%);
 }
 
-section h2 {
-    color: #4b2f1a;
-    font-size: 1.6em;
-    margin-bottom: 12px;
-    padding: 12px;
-    border-bottom: 2px solid #d6b895;
-    background: rgba(255, 250, 240, 0.92);
-    border-radius: 6px 6px 0 0;
-    margin: -24px -24px 12px -24px;
+.about-wrap {
+    max-width: 920px;
+    padding-bottom: 2.2rem;
 }
 
-section p {
-    font-size: 1.05em;
-    line-height: 1.8;
-    color: #2d2218;
-    background: rgba(255, 250, 240, 0.92);
-    padding: 18px;
-    border-radius: 6px;
+.about-title {
+    text-align: center;
+    margin-bottom: 1.35rem;
+    color: #3f2714;
+    font-size: clamp(1.85rem, 4vw, 2.5rem);
+    border-bottom: 2px solid #c5a274;
+    padding-bottom: 0.65rem;
+}
+
+.about-card {
+    background: linear-gradient(180deg, rgba(245, 236, 216, 0.96), rgba(236, 221, 190, 0.96));
+    border: 2px solid #b08a5a;
+    border-radius: 14px;
+    box-shadow: 0 12px 24px rgba(46, 35, 24, 0.2);
+    padding: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.about-card h2 {
+    color: #70431b;
+    font-size: 1.35rem;
+    margin-bottom: 0.6rem;
+    border-bottom: 1px solid #ceb08a;
+    padding-bottom: 0.45rem;
+}
+
+.about-card p {
+    color: #2e2318;
+    line-height: 1.7;
+    font-size: 1.02rem;
 }
 
 @media (max-width: 768px) {
-    main h1 {
-        font-size: 2em;
-    }
-
-    section {
-        padding: 20px;
-    }
-
-    section h2 {
-        font-size: 1.45em;
-        margin: -20px -20px 12px -20px;
+    .about-card {
+        padding: 1rem;
     }
 }

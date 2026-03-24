@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Viking Tracker - Événements</title>
-  <link rel="stylesheet" href="/static/page/index.css?v=1">
-  <link rel="stylesheet" href="/static/page/pays.css?v=1">
+  <link rel="stylesheet" href="/static/page/index.css?v=2">
+  <link rel="stylesheet" href="/static/page/pays.css?v=2">
 </head>
-<body>
+<body class="event-page">
   <header>
     <div class="container">
       <div class="navbar">
@@ -36,14 +36,16 @@
           <div class="pays-card-inner">
             <h2 class="pays-title">{{.Name_event}}</h2>
             <div class="pays-body">
-              <h3>Vikings participants :</h3>
-              <ul>
+              <div class="event-sub-card">
+                <h3 class="event-sub-title">Vikings participants :</h3>
+                <ul class="event-list">
                 {{range .Vikings}}
                 <li>
                   {{.Name}} 
                 </li>
                 {{end}}
-              </ul>
+                </ul>
+              </div>
             </div>
           </div>
         </article>

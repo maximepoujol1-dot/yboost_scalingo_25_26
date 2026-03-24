@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Viking Tracker - Detail</title>
-  <link rel="stylesheet" href="/static/page/index.css?v=1">
-  <link rel="stylesheet" href="/static/page/viking.css?v=1">
+  <link rel="stylesheet" href="/static/page/index.css?v=2">
+  <link rel="stylesheet" href="/static/page/viking.css?v=2">
 </head>
-<body>
+<body class="detail-page">
   <header>
     <div class="container">
       <div class="navbar">
@@ -60,6 +60,17 @@
 
             {{if .Country.Country_name}}
               <p><strong>Pays:</strong> {{.Country.Country_name}}</p>
+            {{end}}
+
+            <h3 class="event-title">Evenements lies</h3>
+            {{if .Events}}
+              <ul class="event-list">
+                {{range .Events}}
+                  <li>{{.Name_event}}</li>
+                {{end}}
+              </ul>
+            {{else}}
+              <p class="event-empty">Aucun evenement associe.</p>
             {{end}}
           </div>
         </article>

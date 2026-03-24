@@ -68,7 +68,7 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w, nil)
 }
 
-// filter page
+// country page
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
 	var countries []Country
 	db.Preload("Viking").Find(&countries)
@@ -97,11 +97,12 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 	tpl.Execute(w, events)
 }
 
+// update, create and delete page
 func homeHandler6(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
 		switch r.FormValue("action") {
-		case "create":
+		case "create" :
 			addTable(r.FormValue("name"),
 					r.FormValue("image"),
 					r.FormValue("burthyear"),
@@ -110,16 +111,16 @@ func homeHandler6(w http.ResponseWriter, r *http.Request) {
 					r.FormValue("country_id"),
 					r.FormValue("mdp"))
 		case "update":
-			updateTable(r.FormValue("viking_id1"),
+			updateTable(r.FormValue("viking_id1")
 					r.FormValue("name1"),
 					r.FormValue("image1"),
 					r.FormValue("burthyear1"),
 					r.FormValue("deadyear1"),
 					r.FormValue("periode1"),
 					r.FormValue("country_id1"),
-					r.FormValue("mdp"))
+					r.FormValue("mdp1"))
 		case "delete":
-			destroyTable(r.FormValue("name2"))
+			destroyTable(r.FormValue("name"))
 		}
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)

@@ -7,10 +7,6 @@ import (
 	"strings"
 )
 
-var vikings []Viking
-var pays []Country
-var event []Event
-
 func addTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
 	
     if mdp != os.Getenv("Mdp") {

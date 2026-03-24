@@ -4,13 +4,14 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 )
 
 var vikings []Viking
 var pays []Country
 var event []Event
 
-func addteTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
+func addTable(name string, image string, burth string, dead string, periode string, country string, mdp string){
 	
     if mdp != os.Getenv("Mdp") {
         fmt.Println("⚠️ Erreur : Mot de passe incorrect ou variable d'env non définie")
@@ -91,8 +92,9 @@ func updateTable(id string, name string, image string, burth string, dead string
 		"country_id": id_country,
 	}
 
-	if db, err := db.Model(&Viking{}).Where("viking_id = ?", vikingID).Updates(updateData)
-	
+	if err := db.Model(&Viking{}).Where("viking_id = ?", vikingID).Updates(updateData).Error; err != nil {
+		fmt.Printf("⚠️ Erreur update viking: %v\n", err)
+	}
 }
 
 func destroyTable(name string){

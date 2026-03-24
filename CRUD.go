@@ -107,10 +107,3 @@ func destroyTable(name string){
 		fmt.Printf("⚠️ Erreur realignement sequence apres suppression: %v\n", err)
 	}
 }
-
-func loadTable(){
-	db.Preload("Viking").Find(&pays)
-	db.Preload("Country").Find(&vikings)
-	db.Preload("Vikings").Find(&event)
-}
-

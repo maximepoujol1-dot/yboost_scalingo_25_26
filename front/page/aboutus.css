@@ -1,8 +1,15 @@
 .about-page {
     background:
-        radial-gradient(circle at 10% 16%, rgba(176, 138, 90, 0.24), transparent 42%),
-        radial-gradient(circle at 88% 82%, rgba(122, 75, 31, 0.16), transparent 35%),
-        linear-gradient(145deg, #efe4cf 0%, #dcc6a2 100%);
+        linear-gradient(180deg, rgba(34, 24, 16, 0.5), rgba(34, 24, 16, 0.35)),
+        radial-gradient(circle at 12% 18%, rgba(176, 138, 90, 0.3), transparent 42%),
+        radial-gradient(circle at 85% 80%, rgba(122, 75, 31, 0.2), transparent 36%),
+        url("/static/images/fond-island.jpg") center / cover fixed no-repeat;
+}
+
+@media (max-width: 900px) {
+    .about-page {
+        background-attachment: scroll;
+    }
 }
 
 .about-wrap {

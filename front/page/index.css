@@ -21,9 +21,10 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     background:
-        radial-gradient(circle at 10% 12%, rgba(176, 138, 90, 0.35), transparent 40%),
-        radial-gradient(circle at 88% 85%, rgba(122, 75, 31, 0.2), transparent 36%),
-        linear-gradient(145deg, #eee1c9 0%, #d8c09a 100%);
+        linear-gradient(180deg, rgba(34, 24, 16, 0.5), rgba(34, 24, 16, 0.35)),
+        radial-gradient(circle at 12% 18%, rgba(176, 138, 90, 0.3), transparent 42%),
+        radial-gradient(circle at 85% 80%, rgba(122, 75, 31, 0.2), transparent 36%),
+        url("/static/images/fond-island.jpg") center / cover fixed no-repeat;
 }
 
 body.home-page {
@@ -198,6 +199,7 @@ main {
         text-align: center;
     }
 
+    body,
     body.home-page {
         background-attachment: scroll;
     }

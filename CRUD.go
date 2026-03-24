@@ -98,7 +98,14 @@ func updateTable(id string, name string, image string, burth string, dead string
 }
 
 func destroyTable(name string){
-	db.Where("name = ?", name).Delete(&Viking{})
+	if err := db.Where("name = ?", name).Delete(&Viking{}).Error; err != nil {
+		fmt.Printf("⚠️ Erreur suppression viking: %v\n", err)
+		return
+	}
+
+	if err := realignVikingSequence(); err != nil {
+		fmt.Printf("⚠️ Erreur realignement sequence apres suppression: %v\n", err)
+	}
 }
 
 func loadTable(){

@@ -23,10 +23,8 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 
 // the principale page
 func homeHandler(w http.ResponseWriter, r *http.Request) {
-	
-	if vikings == nil {
-		db.Preload("Country").Find(&vikings)
-	}
+	var homeVikings []Viking
+	db.Preload("Country").Find(&homeVikings)
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "index.html"))
 	if err != nil {
@@ -34,7 +32,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tpl.Execute(w, vikings)
+	tpl.Execute(w, homeVikings)
 }
 
 
@@ -72,22 +70,20 @@ func homeHandler3(w http.ResponseWriter, r *http.Request) {
 
 // filter page
 func homeHandler4(w http.ResponseWriter, r *http.Request) {
-
-	if len(pays) == 0 {
-		db.Preload("Viking").Find(&pays)
-	}
+	var countries []Country
+	db.Preload("Viking").Find(&countries)
 
 	tpl, err := template.ParseFiles(filepath.Join(templateDir, "pays.html"))
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 		return
 	}
-	tpl.Execute(w, pays)
+	tpl.Execute(w, countries)
 }
 
 func homeHandler5(w http.ResponseWriter, r *http.Request) {
-    
-    err := db.Preload("Vikings").Find(&event).Error
+	var events []Event
+	err := db.Preload("Vikings").Find(&events).Error
     if err != nil {
         http.Error(w, "Erreur lors de la récupération des données", 500)
         return
@@ -98,23 +94,23 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
         http.Error(w, err.Error(), 500)
         return
     }
-    tpl.Execute(w, event)
+	tpl.Execute(w, events)
 }
 
 func homeHandler6(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
-		addTable(r.FormValue("name"),
+		switch r.FormValue("action") {
+		case "create":
+			addTable(r.FormValue("name"),
 					r.FormValue("image"),
 					r.FormValue("burthyear"),
 					r.FormValue("deadyear"),
 					r.FormValue("periode"),
 					r.FormValue("country_id"),
 					r.FormValue("mdp"))
-	}
-
-	if r.Method == http.MethodPost {
-		updateTable(r.FormValue("viking_id1"),
+		case "update":
+			updateTable(r.FormValue("viking_id1"),
 					r.FormValue("name1"),
 					r.FormValue("image1"),
 					r.FormValue("burthyear1"),
@@ -122,10 +118,12 @@ func homeHandler6(w http.ResponseWriter, r *http.Request) {
 					r.FormValue("periode1"),
 					r.FormValue("country_id1"),
 					r.FormValue("mdp"))
-	}
+		case "delete":
+			destroyTable(r.FormValue("name2"))
+		}
 
-	if r.Method == http.MethodPost {
-		destroyTable(r.FormValue("name2"))
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
 	}
 
 

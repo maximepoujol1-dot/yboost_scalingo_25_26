@@ -35,6 +35,7 @@
 				<article class="crud-card create-card">
 					<h3>Creation</h3>
 					<form action="/create" method="post" class="crud-form">
+						<input name="action" type="hidden" value="create">
 						<label for="create-name">Nom</label>
 						<input id="create-name" name="name" type="text" placeholder="Ragnar Lodbrok" required>
 
@@ -62,7 +63,8 @@
 
 				<article class="crud-card update-card">
 					<h3>Modification</h3>
-					<form action="/viking/update" method="post" class="crud-form">
+					<form action="/create" method="post" class="crud-form">
+						<input name="action" type="hidden" value="update">
 						<label for="update-id">Viking ID a modifier</label>
 						<input id="update-id" name="viking_id1" type="number" placeholder="3" required>
 
@@ -84,13 +86,17 @@
 						<label for="update-country-id">Nouveau pays </label>
 						<input id="update-country-id" name="country_id1" type="text" placeholder="2">
 
+						<label for="update-mdp">mdp</label>
+						<input id="update-mdp" name="mdp" type="text" placeholder="..." required>
+
 						<button type="submit" class="btn btn-update">Modifier le viking</button>
 					</form>
 				</article>
 
 				<article class="crud-card delete-card">
 					<h3>Suppression</h3>
-					<form action="/viking/delete" method="post" class="crud-form">
+					<form action="/create" method="post" class="crud-form">
+						<input name="action" type="hidden" value="delete">
 						<label for="delete">Viking a supprimer</label>
 						<input id="delete-id" name="name2" type="text" placeholder="Bjorn Ironside" required>
 

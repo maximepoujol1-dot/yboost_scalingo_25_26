@@ -44,6 +44,12 @@ func initDB() {
 		log.Fatalf("Impossible de configurer la table de jointure EventViking : %v", err)
 	}
 
+	if err := realignVikingSequence(); err != nil {
+		log.Printf("⚠️ Impossible de realigner la sequence Viking: %v", err)
+	} else {
+		log.Printf("✓ Sequence Viking realignee")
+	}
+
 
 	// Récupère la connexion SQL sous-jacente
     sqlDB, err := db.DB()

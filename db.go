@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"os"
-
+	"time"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
@@ -55,17 +55,31 @@ func initDB() {
     sqlDB, err := db.DB()
     if err != nil {
         log.Printf("Erreur lors de la récupération de la connexion SQL : %v", err)
-    } else {
-        // Teste la connexion
-        if err := sqlDB.Ping(); err != nil {
-            log.Fatalf("Impossible de ping la base : %v", err)
-        }
-        
-        // Infos sur la connexion
-        log.Printf("✓ Connexion à la base établie")
-        log.Printf("✓ Max open connections: %d", sqlDB.Stats().MaxOpenConnections)
-        log.Printf("✓ Connexions actives: %d", sqlDB.Stats().OpenConnections)
-    }
+		return
+    } 
 
-	log.Println("Base de données connectée et migrée avec succès")
+    go func() {
+		duration := 30 * time.Second
+		timer := time.NewTimer(duration)
+
+		for {
+			<-timer.C
+
+			if err := sqlDB.Ping(); err != nil {
+				log.Printf("❌ Ping DB échoué: %v", err)
+			} else {
+				stats := sqlDB.Stats()
+				log.Printf("✓ Connexion OK")
+				log.Printf("✓ Max open connections: %d", stats.MaxOpenConnections)
+				log.Printf("✓ Connexions actives: %d", stats.OpenConnections)
+			}
+			log.Println("Base de données connectée et migrée avec succès")
+
+			// 🔁 reset du timer
+			timer.Reset(duration)
+		}
+	}()
+
+	
 }
+

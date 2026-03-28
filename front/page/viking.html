@@ -20,7 +20,7 @@
           <li><a href="/pays">Pays Scandinaves</a></li>
           <li><a href="/event">Événements</a></li>
           <li><a href="/aboutus">À propos</a></li>
-          <li><a href="/create">Modification/a></li>
+          <li><a href="/create">Modification</a></li>
         </ul>
       </div>
     </div>
@@ -60,17 +60,6 @@
 
             {{if .Country.Country_name}}
               <p><strong>Pays:</strong> {{.Country.Country_name}}</p>
-            {{end}}
-
-            <h3 class="event-title">Evenements lies</h3>
-            {{if .Events}}
-              <ul class="event-list">
-                {{range .Events}}
-                  <li>{{.Name_event}}</li>
-                {{end}}
-              </ul>
-            {{else}}
-              <p class="event-empty">Aucun evenement associe.</p>
             {{end}}
           </div>
         </article>

@@ -34,7 +34,7 @@ func addTable(name string, image string, burth string, dead string, periode stri
 				Burthyear: burthInt, 
 				Deadyear: deathInt, 
 				Periode: periode, 
-				CountryID: id_country
+				CountryID: id_country,
 			}
 					
 	if err := db.Where(Viking{Name: name}).FirstOrCreate(&new).Error; err != nil {

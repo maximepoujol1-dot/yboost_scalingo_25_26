@@ -101,6 +101,7 @@ func destroyTable(name string, mdp string){
         return
 
     } 
+	
 	if err := db.Where("name = ?", name).Delete(&Viking{}).Error; err != nil {
 		fmt.Printf("⚠️ Erreur suppression viking: %v\n", err)
 		return

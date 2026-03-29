@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"path/filepath"
+	"time"
 
 )
 
@@ -100,6 +101,9 @@ func homeHandler5(w http.ResponseWriter, r *http.Request) {
 func homeHandler6(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
+		// Add a fixed delay on each write attempt to slow brute-force tries.
+		time.Sleep(10 * time.Second)
+
 		switch r.FormValue("action") {
 		case "create":
 			addTable(r.FormValue("name"),

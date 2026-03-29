@@ -119,7 +119,8 @@ func homeHandler6(w http.ResponseWriter, r *http.Request) {
 					r.FormValue("country_id1"),
 					r.FormValue("mdp"))
 		case "delete":
-			destroyTable(r.FormValue("name2"))
+			destroyTable(r.FormValue("name2"),
+				r.FormValue("mdp"))
 		}
 
 		http.Redirect(w, r, "/", http.StatusSeeOther)

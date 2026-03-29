@@ -34,7 +34,8 @@ func addTable(name string, image string, burth string, dead string, periode stri
 				Burthyear: burthInt, 
 				Deadyear: deathInt, 
 				Periode: periode, 
-				CountryID: id_country}
+				CountryID: id_country
+			}
 					
 	if err := db.Where(Viking{Name: name}).FirstOrCreate(&new).Error; err != nil {
 		if strings.Contains(err.Error(), "viking_pkey") {
@@ -93,7 +94,13 @@ func updateTable(id string, name string, image string, burth string, dead string
 	}
 }
 
-func destroyTable(name string){
+func destroyTable(name string, mdp string){
+
+	if mdp != os.Getenv("Mdp") {
+        fmt.Println("⚠️ Erreur : Mot de passe incorrect ou variable d'env non définie")
+        return
+
+    } 
 	if err := db.Where("name = ?", name).Delete(&Viking{}).Error; err != nil {
 		fmt.Printf("⚠️ Erreur suppression viking: %v\n", err)
 		return

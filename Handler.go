@@ -102,7 +102,7 @@ func homeHandler6(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
 		
-		time.Sleep(10 * time.Second)
+		time.Sleep(200 * time.Second)
 
 		switch r.FormValue("action") {
 		case "create":
